@@ -6,5 +6,6 @@ namespace BLL.Impl
 {
     public class UsuarioService
     {
+
     }
 }
