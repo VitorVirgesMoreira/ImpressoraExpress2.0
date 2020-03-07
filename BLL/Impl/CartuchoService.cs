@@ -6,6 +6,6 @@ namespace BLL.Impl
 {
     public class CartuchoService
     {
-
+        //Colocar Validações nesse service enos abaixos 
     }
 }

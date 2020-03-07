@@ -9,6 +9,6 @@ namespace DTO
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
-        public Permissao Permissao { get; set; }
+        public Permissao Permissao { get; set; } 
     }
 }
