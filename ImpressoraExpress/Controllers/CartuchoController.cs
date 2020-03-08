@@ -12,6 +12,7 @@ namespace ImpressoraExpressMVC.Controllers
 {
     public class CartuchoController : Controller
     {
+        //Controllers
        [HttpGet]
         public async Task<IActionResult> Cadastrar()
         {
