@@ -13,13 +13,13 @@ namespace ImpressoraExpressMVC.Controllers
     public class MovimentacaoController : Controller
     {
         [HttpGet]
-        public async Task<IActionResult> Cadastrar()
+        public async Task<IActionResult> ControlarMovimentacao()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Cadastrar(MovimentacaoViewModel viewModel)
+        public async Task<IActionResult> ControlarMovimentacao(MovimentacaoViewModel viewModel)
         {
 
             var configuration = new MapperConfiguration(cfg =>

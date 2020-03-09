@@ -11,6 +11,7 @@ namespace DTO
         public virtual ImpressoraDTO Impressora { get; set; }
         public DateTime DataLocacao { get; set; }
         public DateTime? DataDevolucao { get; set; }
+        public int QuantidadeCartucho { get; set; }
         public double ValorTotalOrcamento { get; set; }
     }
 }
