@@ -1,5 +1,6 @@
 ﻿using DAO.Interfaces;
 using DTO;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,17 +22,28 @@ namespace DAO
             }
             catch (Exception ex)
             {
+                 
                 if (ex.InnerException != null && ex.InnerException.InnerException.Message.Contains("Email"))
                 {
-
+                    throw new Exception("O email já foi cadastrado");
                 }
+                throw new Exception("Erro no banco de dados");
                 
             }
+            
         }
 
-        public Task<UsuarioDTO> Authenticate(string email, string passaword)
+        public async Task<UsuarioDTO> Authenticate(string email, string passaword)
         {
-            throw new NotImplementedException();
+           using (var ctx = new ExpressDbContext())
+            {
+                UsuarioDTO usuario = await ctx.Usuarios.FirstOrDefaultAsync(u => u.Email == email && u.Senha == passaword);
+                if (usuario == null)
+                {
+                    throw new Exception("Email e/ou senha inválidos");
+                }
+                return usuario;
+            }
         }
 
        
