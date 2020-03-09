@@ -12,6 +12,5 @@ namespace DTO
         public DateTime DataNascimento { get; set; }
         public string Email { get; set; }
         public bool Ativo { get; set; }
-        public virtual ICollection<MovimentacaoDTO> Movimentacoes { get; set; }
     }
 }
