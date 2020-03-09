@@ -1,6 +1,5 @@
 ﻿using DAO.Mappings;
-using Entity;
-using System.Data.Entity;
+
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Reflection;
 using System;
@@ -9,12 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTO;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAO
 {
     public class ExpressDbContext : DbContext
     {
-        public ExpressDbContext():base(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+        public ExpressDbContext():base()
         {
 
         }
@@ -23,14 +23,8 @@ namespace DAO
         public DbSet <ImpressoraDTO> Impressoras { get; set; }
         public DbSet <MovimentacaoDTO> Movimentacoes{ get; set; }
         public DbSet <UsuarioDTO> Usuarios { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
-            modelBuilder.Properties()
-                        .Where(c => c.PropertyType == typeof(string))
-                        .Configure(c => c.IsRequired().IsUnicode(false));
-
             base.OnModelCreating(modelBuilder);
         }
     }
