@@ -6,9 +6,9 @@ using System.Text;
 
 namespace DAO.Mappings
 {
-    public class ClienteRepository : EntityTypeConfiguration<ClienteDTO>
+    public class ClienteMapConfig : EntityTypeConfiguration<ClienteDTO>
     {
-        public ClienteRepository()
+        public ClienteMapConfig()
         {
             //FLUENT API
             this.ToTable("CLIENTES");
