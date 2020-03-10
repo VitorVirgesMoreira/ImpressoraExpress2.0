@@ -7,7 +7,6 @@ namespace DTO
     public class MovimentacaoDTO
     {
         public int ID { get; set; }
-
         public int ImpressoraID { get; set; }
         public virtual ImpressoraDTO Impressora { get; set; }
         public int ClienteID { get; set; }
