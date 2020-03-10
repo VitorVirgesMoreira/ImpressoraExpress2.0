@@ -10,6 +10,6 @@ namespace ImpressoraExpressMVC.Models
         public int ID { get; set; }
         public string Modelo { get; set; }
         public double Valor { get; set; }
-        
+
     }
 }

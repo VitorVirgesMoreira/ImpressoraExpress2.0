@@ -11,5 +11,83 @@
     <title>Cadastrar Impressora</title>
 </head>
 <body>
+    <form method="post">
+        <div class="form-group">
+            <label class="control-label col-md-2">Modelo </label>
+            <div class="col-md-10">
+                <input class="form-control" type="text" name="Modelo" id="Modelo" />
+                <span class="text-danger" id="erroModelo" name="erroModelo"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Valor</label>
+            <div class="col-md-10">
+                <input class="form-control" type="number" name="Valor" id="Valor" />
+                <span class="text-danger" id="erroValor" name="erroValor"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input name="BotaoEnviar" id="BotaoEnviar" type="submit" value="Cadastrar" />
+            </div>
+        </div>
+
+    </form>
 </body>
 </html>
+
+@section scripts{
+
+    <script type="text/javascript">
+
+        //Este evento será disparado quando todo o DOM (Document Object Model) for carregado.
+        $(document).ready(function () {
+
+            var cpfMask = $("#CPF");
+            cpfMask.mask('000.000.000-00', { reverse: false });
+
+            $("#BotaoEnviar").click(function (e) {
+
+                var modelo = $("#Modelo").val();
+                var valor = $("#Valor").val();
+
+                var sucesso = true;
+
+                if (modelo == "") {
+                    $("#erroModelo").html("Modelo deve ser informado.");
+                    sucesso = false;
+                }
+                else if (nome.length < 5 || nome.length > 40) {
+                    $("#erroModelo").html("Modelo deve conter entre 5 e 40 caracteres.");
+                    sucesso = false;
+                }
+                else {
+                    $("#erroModelo").html("");
+                }
+
+                if (valor == "") {
+                    $("#erroValor").html("Valor deve ser informado.");
+                    sucesso = false;
+                }
+                else if (cpf.length < 150) {
+                    $("#erroValor").html("Impressora deve ter o valor maior que R$150.");
+                    sucesso = false;
+                }
+                else {
+                    $("#erroValor").html("");
+                }
+
+                if (!sucesso) {
+                    e.preventDefault();
+                }
+
+            });
+
+        });
+    </script>
+
+
+
+}
