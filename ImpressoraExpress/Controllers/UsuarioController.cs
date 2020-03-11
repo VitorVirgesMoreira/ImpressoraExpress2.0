@@ -32,7 +32,7 @@ namespace ImpressoraExpressMVC.Controllers
             UsuarioService svc = new UsuarioService();
             try
             {
-                await svc.Insert(dto);
+                await svc.Create(dto);
                 return RedirectToAction("Index", "Usuario");
             }
             catch (Exception ex)
