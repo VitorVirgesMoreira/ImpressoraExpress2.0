@@ -72,7 +72,7 @@
 @section scripts{
 
 <script type="text/javascript">
-
+   
     //Este evento será disparado quando todo o DOM (Document Object Model) for carregado.
     $(document).ready(function () {
 
@@ -84,7 +84,6 @@
             var nome = $("#Nome").val();
             var cpf = $("#CPF").val();
             var email = $("#Email").val();
-            var dataNascimento = $("#DataNascimento").val();
             var senha = $("#Senha").val();
             var permissao = $("#Permissao").val();
 
@@ -127,26 +126,16 @@
                 $("#erroEmail").html("");
             }
 
-            if (dataNascimento == "") {
-                $("#erroDataNascimento").html("A data de nascimento deve ser informada");
+
+            if (senha == "") {
+                 $("#erroSenha").html("A senha deve ser informada.");
                 sucesso = false;
             }
-            else {
-                $("#erroDataNascimento").html("");
-            }
-
             if (senha.length < 6 || senha.length > 16) {
                 $("#erroSenha").html("Senha deve conter entre 6 e 16 caracteres");
                 sucesso = false;
             }
 
-            if (permissao == "") {
-                $("#erroPermissao").html("A perissão deve ser informada");
-                sucesso = false;
-            }
-            else {
-                $("#erroPermissao").html("");
-            }
 
             if (!sucesso) {
                 e.preventDefault();
