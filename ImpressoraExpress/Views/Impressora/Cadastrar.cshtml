@@ -45,8 +45,7 @@
         //Este evento será disparado quando todo o DOM (Document Object Model) for carregado.
         $(document).ready(function () {
 
-            var cpfMask = $("#CPF");
-            cpfMask.mask('000.000.000-00', { reverse: false });
+            
 
             $("#BotaoEnviar").click(function (e) {
 
@@ -71,7 +70,7 @@
                     $("#erroValor").html("Valor deve ser informado.");
                     sucesso = false;
                 }
-                else if (cpf.length < 150) {
+                else if (valor < 150) {
                     $("#erroValor").html("Impressora deve ter o valor maior que R$150.");
                     sucesso = false;
                 }
