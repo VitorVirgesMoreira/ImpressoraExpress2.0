@@ -96,6 +96,7 @@ namespace BLL.Impl
                 File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
                 throw new Exception("Erro no banco de dados, contate o admnistrador.");
             }
+            return;
             
         }
     }
