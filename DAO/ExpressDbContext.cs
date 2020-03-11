@@ -14,7 +14,11 @@ namespace DAO
 {
     public class ExpressDbContext : DbContext
     {
-        public ExpressDbContext():base()
+        public ExpressDbContext(DbContextOptions<ExpressDbContext> options ):base(options)
+        {
+
+        }
+        public ExpressDbContext()
         {
 
         }

@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BLL.Impl;
+using BLL.Interfaces;
 using DAO;
+using DAO.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,7 +28,12 @@ namespace ImpressoraExpress
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<ExpressDbContext>(options => options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+            //services.AddDbContextPool<ExpressDbContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
+
+            //services.AddControllersWithViews();
+            services.AddTransient<IUsuarioService, UsuarioService>();
+            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddDbContextPool<ExpressDbContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
 
             services.AddControllersWithViews();
         }
