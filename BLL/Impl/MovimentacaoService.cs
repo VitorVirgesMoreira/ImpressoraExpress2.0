@@ -1,7 +1,9 @@
 ﻿using BLL.Interfaces;
+using DAO;
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,26 +31,39 @@ namespace BLL.Impl
             List<string> errors = new List<string>();
             if (movimentacao.DataLocacao == null)
             {
-                errors.Add("Locação deve ser informada");
+                base.AddError("DataLocacao","Locação deve ser informada");
             }
 
             if (movimentacao.DataDevolucao < DateTime.Now)
             {
-                errors.Add("Cliente não pode alugar pra ontem.");
+                base.AddError("DataDevolucao", "Cliente não pode alugar pra ontem.");
             }
 
             if (movimentacao.QuantidadeCartucho <= 0)
             {
-                errors.Add("Quantidade deve ser maior que zero");
+                base.AddError("QuantidadeCartucho","Quantidade deve ser maior que zero");
             }
             //Continuar daqui
             if (movimentacao.ValorTotalOrcamento <= 0)
             {
-                errors.Add("Orçamento muito baixo, essa empresa vai falir.");
+                base.AddError("ValorTotalOrcamento", "Orçamento muito baixo, essa empresa vai falir.");
             }
-            base.CheckErrors();
 
-            throw new NotImplementedException();
+            base.CheckErrors();
+            try
+            {
+                using (ExpressDbContext context = new ExpressDbContext())
+                {
+                    context.Movimentacoes.Add(movimentacao);
+                    await context.SaveChangesAsync();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
+                throw new Exception("Erro no banco de dados, contate o admnistrador.");
+            }
         }
 
         public Task Update(MovimentacaoDTO movimentacao)

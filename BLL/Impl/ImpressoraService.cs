@@ -17,25 +17,25 @@ namespace BLL.Impl
     {
         public async Task Insert(ImpressoraDTO impressora)
         {
-            List<string> errors = new List<string>();
+            List<Error> errors = new List<Error>();
             if (string.IsNullOrWhiteSpace(impressora.Modelo))
             {
-                errors.Add("Modelo deve ser informado");
+                base.AddError("Modelo", "Modelo deve ser informado");
             }
             else if (impressora.Modelo.Length < 5 || impressora.Modelo.Length > 50)
             {
-                errors.Add("Modelo deve conter entre 5 a 50 caracteres!");
+                base.AddError("Modelo", "Modelo deve conter entre 5 a 50 caracteres!");
             }
             
             string valorConvetido = Convert.ToString(impressora.Valor);
             if (string.IsNullOrWhiteSpace(valorConvetido))
             {
-                errors.Add("Valor deve ser informado");
+                base.AddError("Valor","Valor deve ser informado");
 
             }
             else if (impressora.Valor < 150)
             {
-                errors.Add("Valor da impressora deve ser maior que R$150,00");
+                base.AddError("Valor", "Valor da impressora deve ser maior que R$150,00");
             }
             base.CheckErrors();
             try

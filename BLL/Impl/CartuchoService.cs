@@ -45,7 +45,7 @@ namespace BLL.Impl
                 base.AddError("ValorUnitario", "Valor de unidade deve ser maior que R$30,00.");
             }
           
-            //TODO: FAZER VALIDAÇÂO DE DATA NASCIMENTO(16 MIN)
+            
 
             base.CheckErrors();
             try
