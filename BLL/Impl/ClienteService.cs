@@ -68,9 +68,19 @@ namespace BLL.Impl
             {
                 base.AddError("Email", "Email deve conter entre 5 e 60 caracteres.");
             }
+            TimeSpan dezesseisAnosDeVida = new TimeSpan(5844, 0, 0, 0);
+            TimeSpan centoEQuinzeAnosDeVida = new TimeSpan(42004, 0, 0, 0);
 
-            //TODO: FAZER VALIDAÇÂO DE DATA NASCIMENTO(16 MIN)
 
+            if (DateTime.Now.Subtract(dezesseisAnosDeVida).Date > cliente.DataNascimento)
+            {
+                base.AddError("DataNascimento", "Você deve possuir acima de 16 anos para se cadastrar!");
+
+            }
+            else if (DateTime.Now.Subtract(centoEQuinzeAnosDeVida).Date > cliente.DataNascimento)
+            {
+                base.AddError("DataNascimento", "Você deve possuir menos de 115 anos meo, milagres acontecem.");
+            }
             base.CheckErrors();
             try
             {
