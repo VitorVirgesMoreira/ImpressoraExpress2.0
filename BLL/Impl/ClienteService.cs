@@ -1,4 +1,5 @@
 ﻿using BLL.Interfaces;
+using BLL.Validator;
 using Common;
 using DAO;
 using DTO;
@@ -33,6 +34,8 @@ namespace BLL.Impl
 
         public async Task Insert(ClienteDTO cliente)
         {
+
+            
             List<Error> errors = new List<Error>();
             if (string.IsNullOrWhiteSpace(cliente.Nome))
             {
@@ -42,6 +45,32 @@ namespace BLL.Impl
             {
                 base.AddError("Nome", "O nome deve conter entre 5 e 50 caracteres");
             }
+
+            string cpf = cliente.CPF;
+            if (string.IsNullOrWhiteSpace(cpf))
+            {
+                base.AddError("CPF", "CPF deve ser informado");
+            }
+            else if (cpf.Length > 11)
+            {
+                base.AddError("CPF", "CPF deve conter 11 caracteres.");
+            }
+            else if(!cpf.IsCpf())
+            {
+                base.AddError("CPF", "CPF inválido");
+            }
+
+            if (string.IsNullOrWhiteSpace(cliente.Email))
+            {
+                base.AddError("Email", "Email deve ser informado");
+            }
+            else if(cliente.Email.Length < 5 || cliente.Email.Length > 60)
+            {
+                base.AddError("Email", "Email deve conter entre 5 e 60 caracteres.");
+            }
+
+            //TODO: FAZER VALIDAÇÂO DE DATA NASCIMENTO(16 MIN)
+
             base.CheckErrors();
             try
             {

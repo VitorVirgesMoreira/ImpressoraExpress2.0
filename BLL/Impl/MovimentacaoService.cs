@@ -42,6 +42,10 @@ namespace BLL.Impl
                 errors.Add("Quantidade deve ser maior que zero");
             }
             //Continuar daqui
+            if (movimentacao.ValorTotalOrcamento <= 0)
+            {
+                errors.Add("Orçamento muito baixo, essa empresa vai falir.");
+            }
             base.CheckErrors();
 
             throw new NotImplementedException();
