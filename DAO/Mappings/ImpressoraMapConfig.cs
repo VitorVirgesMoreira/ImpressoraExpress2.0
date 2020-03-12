@@ -1,4 +1,6 @@
 ﻿using DTO;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
@@ -6,14 +8,13 @@ using System.Text;
 
 namespace DAO.Mappings
 {
-    public class ImpressoraMapConfig : EntityTypeConfiguration<ImpressoraDTO>
+    public class ImpressoraMapConfig : IEntityTypeConfiguration<ImpressoraDTO>
     {
-        public ImpressoraMapConfig()
+        public void Configure(EntityTypeBuilder<ImpressoraDTO> builder)
         {
-            this.ToTable("IMPRESSORA");
-            this.Property(c => c.Modelo).HasMaxLength(150).IsRequired().IsUnicode();
-            
-            
+            builder.ToTable("IMPRESSORA");
+            builder.Property(c => c.Modelo).HasMaxLength(150).IsRequired().IsUnicode();
+
         }
     }
 }

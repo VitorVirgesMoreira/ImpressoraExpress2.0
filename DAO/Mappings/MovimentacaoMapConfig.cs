@@ -1,4 +1,6 @@
 ﻿using DTO;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
@@ -6,14 +8,15 @@ using System.Text;
 
 namespace DAO.Mappings
 {
-    public class MovimentacaoMapConfig: EntityTypeConfiguration<MovimentacaoDTO>
+    public class MovimentacaoMapConfig : IEntityTypeConfiguration<MovimentacaoDTO>
     {
-        public MovimentacaoMapConfig()
+        public void Configure(EntityTypeBuilder<MovimentacaoDTO> builder)
         {
-            this.ToTable("MOVIMENTACAO");
-            this.Property(c => c.DataLocacao).IsRequired().HasColumnType("DateTime2");
-            this.Property(c => c.DataDevolucao).HasColumnType("DateTime");
-                
+
+            builder.ToTable("MOVIMENTACAO");
+            builder.Property(c => c.DataLocacao).IsRequired().HasColumnType("DateTime2");
+            builder.Property(c => c.DataDevolucao).HasColumnType("DateTime");
+
 
 
         }

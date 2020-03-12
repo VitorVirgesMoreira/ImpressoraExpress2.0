@@ -1,4 +1,6 @@
 ﻿using DTO;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
@@ -6,31 +8,32 @@ using System.Text;
 
 namespace DAO.Mappings
 {
-    public class ClienteMapConfig : EntityTypeConfiguration<ClienteDTO>
+    public class ClienteMapConfig : IEntityTypeConfiguration<ClienteDTO>
     {
-        public ClienteMapConfig()
+        public void Configure(EntityTypeBuilder<ClienteDTO> builder)
         {
-            //FLUENT API
-            this.ToTable("CLIENTES");
 
-            this.Property(c => c.CPF)
+            //FLUENT API
+            builder.ToTable("CLIENTES");
+
+           builder.Property(c => c.CPF)
                 .IsFixedLength()
                 .HasMaxLength(14);
 
-            this.HasIndex(c => c.CPF).IsUnique();
+            builder.HasIndex(c => c.CPF).IsUnique();
 
-            this.Property(c => c.DataNascimento)
+            builder.Property(c => c.DataNascimento)
                 .IsRequired() //este is required é opcional pois a convenção
                               //padrão do EF já é tornar uma data obrigatória
                 .HasColumnType("date");
 
-            this.Property(c => c.Email)
+            builder.Property(c => c.Email)
                 .HasMaxLength(60);
 
-            this.HasIndex(c => c.Email)
+            builder.HasIndex(c => c.Email)
                 .IsUnique();
 
-            this.Property(c => c.Nome)
+            builder.Property(c => c.Nome)
                 .HasMaxLength(50);
         }
     }

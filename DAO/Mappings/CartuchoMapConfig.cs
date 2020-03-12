@@ -1,4 +1,6 @@
 ﻿using DTO;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
@@ -6,14 +8,15 @@ using System.Text;
 
 namespace DAO.Mappings
 {
-    public class CartuchoMapConfig: EntityTypeConfiguration<CartuchoDTO>
+    public class CartuchoMapConfig : IEntityTypeConfiguration<CartuchoDTO>
     {
-        public CartuchoMapConfig()
+        public void Configure(EntityTypeBuilder<CartuchoDTO> builder)
         {
-            this.ToTable("CARTUCHOS");
-            this.Property(c => c.NomeModelo).HasMaxLength(150);
-            this.Property(c => c.CorCartucho).IsRequired().HasColumnName("CARTUCHO");
-            
+                builder.ToTable("CARTUCHOS");
+                builder.Property(c => c.NomeModelo).HasMaxLength(150);
+                builder.Property(c => c.CorCartucho).IsRequired().HasColumnName("CARTUCHO");
+
+           
         }
     }
 }
