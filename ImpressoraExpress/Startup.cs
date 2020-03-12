@@ -33,6 +33,7 @@ namespace ImpressoraExpress
             //services.AddControllersWithViews();
             services.AddTransient<IUsuarioService, UsuarioService>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+
             services.AddDbContextPool<ExpressDbContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
 
             services.AddControllersWithViews();

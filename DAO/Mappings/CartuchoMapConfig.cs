@@ -13,7 +13,7 @@ namespace DAO.Mappings
         public void Configure(EntityTypeBuilder<CartuchoDTO> builder)
         {
                 builder.ToTable("CARTUCHOS");
-                builder.Property(c => c.NomeModelo).HasMaxLength(150);
+                builder.Property(c => c.NomeModelo).HasMaxLength(150).IsUnicode();
                 builder.Property(c => c.CorCartucho).IsRequired().HasColumnName("CARTUCHO");
 
            
