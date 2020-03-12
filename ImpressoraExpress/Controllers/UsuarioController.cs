@@ -33,7 +33,7 @@ namespace ImpressoraExpressMVC.Controllers
             try
             {
                 await svc.Create(dto);
-                return RedirectToAction("Index", "Usuario");
+                return RedirectToAction("Login", "Usuario");
             }
             catch (Exception ex)
             {
@@ -42,6 +42,11 @@ namespace ImpressoraExpressMVC.Controllers
             return View();
         }
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Login()
         {
             return View();
         }
