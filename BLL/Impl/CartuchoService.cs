@@ -35,12 +35,8 @@ namespace BLL.Impl
                 base.AddError("NomeModelo", "O nome do modelo deve conter entre 5 e 150 caracteres");
             }
 
-            string valorCartucho = (cartucho.ValorUnitario).ToString();
-            if (string.IsNullOrWhiteSpace(valorCartucho))
-            {
-                base.AddError("ValorUnitario", "Valor de unidade do cartucho deve ser informado");
-            }
-            else if (cartucho.ValorUnitario < 30)
+            
+            if (cartucho.ValorUnitario < 30)
             {
                 base.AddError("ValorUnitario", "Valor de unidade deve ser maior que R$30,00.");
             }

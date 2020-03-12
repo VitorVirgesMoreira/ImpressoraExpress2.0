@@ -12,10 +12,12 @@ namespace ImpressoraExpressMVC.Controllers
 {
     public class ClienteController : Controller
     {
+        [HttpGet]
         public async Task<IActionResult> Cadastrar()
         {
             return View();
         }
+        [HttpPost]
         public async Task<IActionResult> Cadastrar(ClienteViewModel viewModel)
         {
 
