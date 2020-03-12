@@ -1,6 +1,6 @@
 ﻿
 @{
-   ViewData["Title"] = "Controlar";
+   ViewData["Title"] = "Cadastrar";
 }
 
 <!DOCTYPE html>
@@ -12,23 +12,32 @@
    
 
 </head>
+<body>
 
-
-
-
-
-
-
-     
-<div>
-    <form method="post">
-        <div class="form-group">
-            <label class="control-label col-md-2">Nome Modelo</label>
-            <div class="col-md-10">
-                <input class="form-control" type="text" name="NomeModelo" id="NomeModelo" />
-                <span class="text-danger" id="erroNomeModelo" name="erroNomeModelo"></span>
+    <div>
+        @{
+            List<Common.Error> errors = new List<Common.Error>();
+            if (ViewBag.Errors != null)
+            {
+                errors = ViewBag.Errors;
+            }
+        }
+        <form method="post">
+            <div class="form-group">
+                <label class="control-label col-md-2">Nome Modelo</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" name="NomeModelo" id="NomeModelo" />
+                    <span class="text-danger" id="erroNomeModelo" name="erroNomeModelo">
+                        @{
+                            Common.Error erro = errors.FirstOrDefault(c => c.FieldName == "NomeModelo");
+                            if (erro != null)
+                            {
+                                <text>@erro.Message</text>
+                            }
+                        }
+                    </span>
+                </div>
             </div>
-        </div>
 
         @{
             string[] cor = Enum.GetNames(typeof(DTO.Enum.Cor));
@@ -48,13 +57,21 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Valor de Unidade</label>
-            <div class="col-md-10">
-                <input class="form-control" type="number" name="ValorUnidade" id="ValorUnidade" />
-                <span class="text-danger" id="erroValorUnidade" name="erroValorUnidade"></span>
+            <div class="form-group">
+                <label class="control-label col-md-2">Valor de Unidade</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="number" name="ValorUnidade" id="ValorUnidade" />
+                    <span class="text-danger" id="erroValorUnidade" name="erroValorUnidade">
+                        @{
+                            erro = errors.FirstOrDefault(c => c.FieldName == "ValorUnidade");
+                            if (erro != null)
+                            {
+                                <text>@erro.Message</text>
+                            }
+                        }
+                    </span>
+                </div>
             </div>
-        </div>
 
         <div class="form-group">
             <div class="col-md-10">

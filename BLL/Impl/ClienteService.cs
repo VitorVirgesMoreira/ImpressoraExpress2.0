@@ -51,7 +51,7 @@ namespace BLL.Impl
             {
                 base.AddError("CPF", "CPF deve ser informado");
             }
-            else if (cpf.Length > 11)
+            else if (cpf.Length != 11)
             {
                 base.AddError("CPF", "CPF deve conter 11 caracteres.");
             }
@@ -96,6 +96,7 @@ namespace BLL.Impl
                 File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
                 throw new Exception("Erro no banco de dados, contate o admnistrador.");
             }
+            return;
             
         }
     }
