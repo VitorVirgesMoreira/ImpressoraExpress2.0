@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using BLL.Impl;
+using BLL.Interfaces;
 using DTO;
 using ImpressoraExpressMVC.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,12 @@ namespace ImpressoraExpressMVC.Controllers
 {
     public class MovimentacaoController : Controller
     {
+        private readonly IMovimentacaoService service;
+
+        public MovimentacaoController(IMovimentacaoService service)
+        {
+            this.service = service;
+        }
         [HttpGet]
         public async Task<IActionResult> Controlar()
         {
@@ -29,10 +36,9 @@ namespace ImpressoraExpressMVC.Controllers
             IMapper mapper = configuration.CreateMapper();
             MovimentacaoDTO dto = mapper.Map<MovimentacaoDTO>(viewModel);
 
-            MovimentacaoService svc = new MovimentacaoService();
             try
             {
-                await svc.Insert(dto);
+                await service.Insert(dto);
                 return RedirectToAction("Index", "Movimentacao");
             }
             catch (Exception ex)

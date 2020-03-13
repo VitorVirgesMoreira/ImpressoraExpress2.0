@@ -7,17 +7,21 @@ using System.Threading.Tasks;
 
 namespace DAO.Repository
 {
-    class MovimentacaoRepository : IMovimentacaoRespository
+    public class MovimentacaoRepository : IMovimentacaoRespository
     {
+        private ExpressDbContext _context;
+        public MovimentacaoRepository(ExpressDbContext context)
+        {
+            _context = context;
+        }
         public async Task Create(MovimentacaoDTO movimentacao)
         {
             try
             {
-                using (var context = new ExpressDbContext())
-                {
-                    context.Movimentacoes.Add(movimentacao);
-                    await context.SaveChangesAsync();
-                }
+
+                _context.Movimentacoes.Add(movimentacao);
+                    await _context.SaveChangesAsync();
+                
             }
             catch (Exception ex)
             {

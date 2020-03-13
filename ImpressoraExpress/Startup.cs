@@ -6,6 +6,7 @@ using BLL.Impl;
 using BLL.Interfaces;
 using DAO;
 using DAO.Interfaces;
+using DAO.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +32,19 @@ namespace ImpressoraExpress
             //services.AddDbContextPool<ExpressDbContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
 
             //services.AddControllersWithViews();
+            
+            services.AddTransient<ICartuchoService, CartuchoService>();
+            services.AddTransient<ICartuchoRepository, CartuchoRepository>();
+
+            services.AddTransient<IClienteService, ClienteService>();
+            services.AddTransient<IClienteRepository, ClienteRepository>();
+
+            services.AddTransient<IImpressoraService, ImpressoraService>();
+            services.AddTransient<IImpressoraRepository, ImpressoraRepository>();
+
+            services.AddTransient<IMovimentacaoService, MovimentacaoService>();
+            services.AddTransient<IMovimentacaoRespository, MovimentacaoRepository>();
+
             services.AddTransient<IUsuarioService, UsuarioService>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
 

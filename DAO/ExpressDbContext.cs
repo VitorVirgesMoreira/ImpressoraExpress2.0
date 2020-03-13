@@ -18,10 +18,7 @@ namespace DAO
         {
 
         }
-        public ExpressDbContext()
-        {
-
-        }
+       
         public DbSet <ClienteDTO> Clientes { get; set; }
         public DbSet <CartuchoDTO> Cartuchos { get; set; }
         public DbSet <ImpressoraDTO> Impressoras { get; set; }

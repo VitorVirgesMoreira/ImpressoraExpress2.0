@@ -2,6 +2,7 @@
 using BLL.Validator;
 using Common;
 using DAO;
+using DAO.Interfaces;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,28 @@ namespace BLL.Impl
 {
     public class ClienteService : BaseService, IClienteService
     {
+        private readonly IClienteRepository repository;
+        private ExpressDbContext _context;
+        public ClienteService(ExpressDbContext context)
+        {
+            _context = context;
+        }
+        public ClienteService()
+        {
+        }
+
+        public ClienteService(IClienteRepository repository)
+        {
+            this.repository = repository;
+        }
         public async Task<List<ClienteDTO>> GetData()
         {
+           
             try
             {
-                using (ExpressDbContext context = new ExpressDbContext())
-                {
-                    return await context.Clientes.ToListAsync();
-                }
+               
+                    return await _context.Clientes.ToListAsync();
+               
             }
             catch (Exception ex)
             {
@@ -34,7 +49,6 @@ namespace BLL.Impl
 
         public async Task Insert(ClienteDTO cliente)
         {
-
             
             List<Error> errors = new List<Error>();
             if (string.IsNullOrWhiteSpace(cliente.Nome))
@@ -82,22 +96,26 @@ namespace BLL.Impl
             }
 
             base.CheckErrors();
-            try
-            {
-                using (ExpressDbContext context = new ExpressDbContext())
-                {
-                    context.Clientes.Add(cliente);
-                    await context.SaveChangesAsync();
+            //try
+            //{
+            //    using (ExpressDbContext context = new ExpressDbContext())
+            //    {
+            //        context.Clientes.Add(cliente);
+            //        await context.SaveChangesAsync();
 
-                }
-            }
-            catch (Exception ex)
-            {
-                File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
-                throw new Exception("Erro no banco de dados, contate o admnistrador.");
-            }
-            return;
-            
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
+            //    throw new Exception("Erro no banco de dados, contate o admnistrador.");
+            //}
+            //return;
+
+            await repository.Create(cliente);
+
         }
+
+        
     }
 }

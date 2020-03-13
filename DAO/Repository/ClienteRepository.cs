@@ -9,15 +9,17 @@ namespace DAO.Repository
 {
     public class ClienteRepository : IClienteRepository
     {
+        private ExpressDbContext _context;
+        public ClienteRepository(ExpressDbContext context)
+        {
+            _context = context;
+        }
         public async Task Create(ClienteDTO cliente)
         {
             try
             {
-                using (var context = new ExpressDbContext())
-                {
-                    context.Clientes.Add(cliente);
-                    await context.SaveChangesAsync();
-                }
+                _context.Clientes.Add(cliente);
+                    await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {

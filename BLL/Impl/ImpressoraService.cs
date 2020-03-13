@@ -1,6 +1,7 @@
 ﻿using BLL.Interfaces;
 using Common;
 using DAO;
+using DAO.Interfaces;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,12 @@ namespace BLL.Impl
 {
     public class ImpressoraService : BaseService, IImpressoraService
     {
+        private readonly IImpressoraRepository repository;
+
+        public ImpressoraService(IImpressoraRepository repository)
+        {
+            this.repository = repository;
+        }
         public async Task Insert(ImpressoraDTO impressora)
         {
             List<Error> errors = new List<Error>();
@@ -38,20 +45,21 @@ namespace BLL.Impl
                 base.AddError("Valor", "Valor da impressora deve ser maior que R$150,00");
             }
             base.CheckErrors();
-            try
-            {
-                using (ExpressDbContext context = new ExpressDbContext())
-                {
-                    context.Impressoras.Add(impressora);
-                    await context.SaveChangesAsync();
+            //try
+            //{
+            //    using (ExpressDbContext context = new ExpressDbContext())
+            //    {
+            //        context.Impressoras.Add(impressora);
+            //        await context.SaveChangesAsync();
 
-                }
-            }
-            catch (Exception ex)
-            {
-                File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
-                throw new Exception("Erro no banco de dados, contate o admnistrador.");
-            }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
+            //    throw new Exception("Erro no banco de dados, contate o admnistrador.");
+            //}
+            await repository.Create(impressora);
         }
 
         public Task Update(ImpressoraDTO impressora)
@@ -65,8 +73,16 @@ namespace BLL.Impl
         }
         public Task<List<ImpressoraDTO>> GetImpressoras(int page, int size)
         {
+            throw new NotImplementedException();
+        }
 
+        System.Threading.Tasks.Task<List<ImpressoraDTO>> IImpressoraService.GetImpressoras(int page, int size)
+        {
+            throw new NotImplementedException();
+        }
 
+        System.Threading.Tasks.Task<ImpressoraDTO> IImpressoraService.GetImpressoraByID(int id)
+        {
             throw new NotImplementedException();
         }
     }

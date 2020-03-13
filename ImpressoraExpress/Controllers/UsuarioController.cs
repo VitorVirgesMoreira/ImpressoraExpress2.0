@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using BLL.Impl;
+using BLL.Interfaces;
 using DTO;
 using ImpressoraExpressMVC.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,12 @@ namespace ImpressoraExpressMVC.Controllers
 {
     public class UsuarioController : Controller
     {
+        private readonly IUsuarioService service;
+
+        public UsuarioController(IUsuarioService service)
+        {
+            this.service = service;
+        }
         [HttpGet]
         public async Task<IActionResult> Cadastrar()
         {
@@ -29,10 +36,9 @@ namespace ImpressoraExpressMVC.Controllers
             IMapper mapper = configuration.CreateMapper();
             UsuarioDTO dto = mapper.Map<UsuarioDTO>(viewModel);
 
-            UsuarioService svc = new UsuarioService();
             try
             {
-                await svc.Create(dto);
+                await service.Create(dto);
                 return RedirectToAction("Login", "Usuario");
             }
             catch (Exception ex)

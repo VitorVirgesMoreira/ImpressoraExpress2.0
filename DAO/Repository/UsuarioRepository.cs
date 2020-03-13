@@ -8,17 +8,21 @@ using System.Threading.Tasks;
 
 namespace DAO
 {
-    public class UsuarioRepository: IUsuarioRepository
+     public class UsuarioRepository: IUsuarioRepository
     {
+        private ExpressDbContext _context;
+        public UsuarioRepository(ExpressDbContext context)
+        {
+            _context = context;
+        }
         public async Task Create(UsuarioDTO usuario)
         {
             try
             {
-                using (var context = new ExpressDbContext())
-                {
-                    context.Usuarios.Add(usuario);
-                    await context.SaveChangesAsync();
-                }
+               
+                    _context.Usuarios.Add(usuario);
+                    await _context.SaveChangesAsync();
+                
             }
             catch (Exception ex)
             {
@@ -35,15 +39,14 @@ namespace DAO
 
         public async Task<UsuarioDTO> Authenticate(string email, string passaword)
         {
-           using (var ctx = new ExpressDbContext())
-            {
-                UsuarioDTO usuario = await ctx.Usuarios.FirstOrDefaultAsync(u => u.Email == email && u.Senha == passaword);
+           
+                UsuarioDTO usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == email && u.Senha == passaword);
                 if (usuario == null)
                 {
                     throw new Exception("Email e/ou senha inválidos");
                 }
                 return usuario;
-            }
+            
         }
 
        

@@ -9,6 +9,7 @@ namespace BLL.Interfaces
     public interface IClienteService
     {
         Task Insert(ClienteDTO cliente);
+
         Task<List<ClienteDTO>> GetData();
     }
 }

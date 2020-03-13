@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace BLL.Impl
 {
-    public class Task<UsuarioService> : BaseService, IUsuarioService
+    public  class UsuarioService : BaseService, IUsuarioService
     {
         private readonly IUsuarioRepository repository;
 
-        public Task(IUsuarioRepository repository)
+        public UsuarioService(IUsuarioRepository repository)
         {
             this.repository = repository;
         }

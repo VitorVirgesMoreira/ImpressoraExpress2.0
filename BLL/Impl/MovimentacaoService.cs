@@ -1,5 +1,6 @@
 ﻿using BLL.Interfaces;
 using DAO;
+using DAO.Interfaces;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,12 @@ namespace BLL.Impl
 {
     public class MovimentacaoService : BaseService, IMovimentacaoService
     {
+        private readonly IMovimentacaoRespository respository;
+
+        public MovimentacaoService(IMovimentacaoRespository respository)
+        {
+            this.respository = respository;
+        }
         public Task<List<MovimentacaoDTO>> GetData()
         {
             throw new NotImplementedException();
@@ -50,23 +57,39 @@ namespace BLL.Impl
             }
 
             base.CheckErrors();
-            try
-            {
-                using (ExpressDbContext context = new ExpressDbContext())
-                {
-                    context.Movimentacoes.Add(movimentacao);
-                    await context.SaveChangesAsync();
+            //try
+            //{
+            //    using (ExpressDbContext context = new ExpressDbContext())
+            //    {
+            //        context.Movimentacoes.Add(movimentacao);
+            //        await context.SaveChangesAsync();
 
-                }
-            }
-            catch (Exception ex)
-            {
-                File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
-                throw new Exception("Erro no banco de dados, contate o admnistrador.");
-            }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
+            //    throw new Exception("Erro no banco de dados, contate o admnistrador.");
+            //}
+            await respository.Create(movimentacao);
         }
 
         public Task Update(MovimentacaoDTO movimentacao)
+        {
+            throw new NotImplementedException();
+        }
+
+        System.Threading.Tasks.Task<List<MovimentacaoDTO>> IMovimentacaoService.GetData()
+        {
+            throw new NotImplementedException();
+        }
+
+        System.Threading.Tasks.Task<MovimentacaoDTO> IMovimentacaoService.GetMovimentacaoByID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        System.Threading.Tasks.Task<List<MovimentacaoDTO>> IMovimentacaoService.GetMovimentacoes(int page, int size)
         {
             throw new NotImplementedException();
         }

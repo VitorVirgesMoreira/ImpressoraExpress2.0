@@ -7,17 +7,19 @@ using System.Threading.Tasks;
 
 namespace DAO.Repository
 {
-    class CartuchoRepository : ICartuchoRepository
+    public class CartuchoRepository : ICartuchoRepository
     {
+        private ExpressDbContext _context;
+        public CartuchoRepository(ExpressDbContext context)
+        {
+            _context = context;
+        }
         public async Task Create(CartuchoDTO cartucho)
         {
 			try
 			{
-                using (var context = new ExpressDbContext())
-                {
-                    context.Cartuchos.Add(cartucho);
-                    await context.SaveChangesAsync();
-                }
+                    _context.Cartuchos.Add(cartucho);
+                    await _context.SaveChangesAsync();
             }
 			catch (Exception ex)
 			{

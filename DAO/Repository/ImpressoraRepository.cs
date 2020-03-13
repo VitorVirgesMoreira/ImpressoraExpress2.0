@@ -7,18 +7,23 @@ using System.Threading.Tasks;
 
 namespace DAO.Repository
 {
-    class ImpressoraRepository : IImpressoraRepository
+    public class ImpressoraRepository : IImpressoraRepository
     {
+
+        private ExpressDbContext _context;
+        public ImpressoraRepository(ExpressDbContext context)
+        {
+            _context = context;
+        }
         public async Task Create(ImpressoraDTO impressora)
         {
 
             try
             {
-                using (var context = new ExpressDbContext())
-                {
-                    context.Impressoras.Add(impressora);
-                    await context.SaveChangesAsync();
-                }
+
+                _context.Impressoras.Add(impressora);
+                await _context.SaveChangesAsync();
+                
             }
             catch (Exception ex)
             {
