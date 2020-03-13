@@ -2,6 +2,7 @@
 using BLL.Validator;
 using Common;
 using DAO;
+using DAO.Interfaces;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,14 @@ using System.Threading.Tasks;
 
 namespace BLL.Impl
 {
-    public class UsuarioService : BaseService, IUsuarioService
+    public class Task<UsuarioService> : BaseService, IUsuarioService
     {
-        UsuarioRepository repository = new UsuarioRepository();
+        private readonly IUsuarioRepository repository;
 
+        public Task(IUsuarioRepository repository)
+        {
+            this.repository = repository;
+        }
         public async Task Create(UsuarioDTO usuario)
         {
             List<Error> errors = new List<Error>();
@@ -60,28 +65,32 @@ namespace BLL.Impl
             }
 
             base.CheckErrors();
-            try
-            {
-                using (ExpressDbContext context = new ExpressDbContext())
-                {
-                    context.Usuarios.Add(usuario);
-                    await context.SaveChangesAsync();
+            //try
+            //{
+            //    using (ExpressDbContext context = new ExpressDbContext())
+            //    {
+            //        context.Usuarios.Add(usuario);
+            //        await context.SaveChangesAsync();
 
-                }
-            }
-            catch (Exception ex)
-            {
-                File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
-                throw new Exception("Erro no banco de dados, contate o admnistrador.");
-            }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
+            //    throw new Exception("Erro no banco de dados, contate o admnistrador.");
+            //}
+            //await repository.Create(usuario);
+
             await repository.Create(usuario);
 
         }
 
-        public async Task<UsuarioDTO> Authenticate(string email, string password)
-        {
-            return await repository.Authenticate(email, password);
-        }
+        
 
+        System.Threading.Tasks.Task<UsuarioDTO> IUsuarioService.Authenticate(string email, string password)
+        {
+            return repository.Authenticate(email, password);
+
+        }
     }
 }
