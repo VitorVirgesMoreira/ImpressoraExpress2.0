@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace DAO.Interfaces
 {
-    public interface IMovimentacaoRespository
+    public interface IClienteRepository
     {
-        Task Create(MovimentacaoDTO movimentacao);
+        Task Create(ClienteDTO cliente);
+      
     }
 }
