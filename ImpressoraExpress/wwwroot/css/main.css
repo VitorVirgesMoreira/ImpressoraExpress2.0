@@ -139,25 +139,25 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
 .txt1 {
-  font-family: Raleway-SemiBold;
-  font-size: 13px;
-  color: #555555;
-  line-height: 1.4;
-  text-transform: uppercase;
+    font-family: 'Comic Sans MS';
+    font-size: 13px;
+    color: #DAEBF2;
+    line-height: 1.4;
+    text-transform: uppercase;
 }
 
 .txt2 {
-  font-family: Raleway-Regular;
-  font-size: 13px;
-  color: #999999;
-  line-height: 1.4;
+    font-family: 'Comic Sans MS';
+    font-size: 13px;
+    color: #DAEBF2;
+    line-height: 1.4;
 }
 
 .txt3 {
-  font-family: Raleway-Regular;
-  font-size: 13px;
-  color: #555555;
-  line-height: 1.4;
+    font-family: 'Comic Sans MS';
+    font-size: 13px;
+    color: #DAEBF2;
+    line-height: 1.4;
 }
 
 
@@ -181,13 +181,16 @@ iframe {
     justify-content: center;
     align-items: center;
     padding: 15px;
-    background-image: linear-gradient(to bottom, #696969, #6e6e73, #70737c, #717986, #708090);
+    background: url(https://images.vexels.com/media/users/3/127206/isolated/lists/4972c9080db1ed795d008b81e2833b71-blue-printer-line-icon-svg.png);
+    background-repeat:no-repeat;
+    background: linear-gradient(to bottom, #829894, #6c8488, #5d6e7a, #535968, #4b4453);
 }
+
 
 
 .wrap-login100 {
     width: 560px;
-    background-image: linear-gradient(to bottom, #c0c0c0, #b0b0b0, #9f9f9f, #909090, #808080);
+    background-image: linear-gradient(to bottom, #4b4453, #535968, #5d6e7a, #6c8488, #829894);
     border-radius: 10px;
     position: relative;
 }
@@ -201,15 +204,14 @@ iframe {
 }
 
 .login100-form-title {
-  font-family: Raleway-Medium;
-  font-size: 30px;
-  color: #555555;
-  line-height: 1.2;
-  text-transform: uppercase;
-  text-align: left;
-
-  width: 100%;
-  display: block;
+    font-family: 'Comic Sans MS';
+    font-size: 30px;
+    color: #F0F8FF;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: left;
+    width: 100%;
+    display: block;
 }
 
 
@@ -410,9 +412,9 @@ iframe {
   transition: all 0.4s;
 }
 
-.login100-form-btn:hover {
-  background-color: #57b846;
-}
+    .login100-form-btn:hover {
+        background-color: #1E90FF;
+    }
 
 
 /*------------------------------------------------------------------
