@@ -1,5 +1,4 @@
-﻿using System.Data.Entity.Core.Common;
-using DTO.ComplexTypes;
+﻿using DTO.ComplexTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

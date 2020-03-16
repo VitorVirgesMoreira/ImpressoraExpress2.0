@@ -45,8 +45,9 @@ namespace ImpressoraExpressMVC.Controllers
             catch (Exception ex)
             {
                 ViewBag.Erros = ex.Message;
+                return View();
             }
-            return View();
+            
         }
 
         public IActionResult Index()

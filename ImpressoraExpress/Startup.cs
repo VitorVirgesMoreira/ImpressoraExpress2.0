@@ -48,7 +48,7 @@ namespace ImpressoraExpress
             services.AddTransient<IUsuarioService, UsuarioService>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
 
-            services.AddDbContextPool<ExpressDbContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
+            services.AddDbContextPool<ExpressDbContext>(options => options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CartuchoDBExpress;Integrated Security=True"));
 
             services.AddControllersWithViews();
         }

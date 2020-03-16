@@ -1,6 +1,4 @@
 ﻿using DAO.Mappings;
-
-using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Reflection;
 using System;
 using System.Collections.Generic;

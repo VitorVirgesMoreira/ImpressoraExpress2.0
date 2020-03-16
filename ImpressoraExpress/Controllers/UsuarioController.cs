@@ -52,9 +52,20 @@ namespace ImpressoraExpressMVC.Controllers
             return View();
         }
 
-        public IActionResult Login()
+        public async Task<IActionResult> Login(string email, string password)
         {
+
+            //try
+            //{
+            //    await service.Authenticate(email, password);
+            //}
+            //catch (Exception)
+            //{
+
+            //    throw;
+            //}
             return View();
+            
         }
     }
 }

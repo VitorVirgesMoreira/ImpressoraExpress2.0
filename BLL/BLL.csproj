@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="entityFramework" Version="6.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.Build.Tasks.Core" Version="16.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
   </ItemGroup>

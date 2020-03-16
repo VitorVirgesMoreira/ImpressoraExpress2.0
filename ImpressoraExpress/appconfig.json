@@ -1,12 +1,11 @@
-
 {
   "Logging": {
-    "LogLevel": {,0
+    "LogLevel": {
       "Default": "Information",
       "Microsoft": "Warning",
       "Microsoft.Hosting.Lifetime": "Information"
     }
   },
   "AllowedHosts": "*",
-  "ConnectionString": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ExpressImpressora;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+  "ConnectionString": "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\900209\\Documents\\DBImp.mdf;Integrated Security=True;Connect Timeout=30"
 }
