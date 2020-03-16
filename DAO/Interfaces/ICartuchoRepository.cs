@@ -9,6 +9,7 @@ namespace DAO.Interfaces
     public interface ICartuchoRepository
     {
         Task Create(CartuchoDTO cartucho);
-       
+        Task<List<CartuchoDTO>> GetData();
+
     }
 }

@@ -9,5 +9,7 @@ namespace DAO.Interfaces
     public interface IMovimentacaoRespository
     {
         Task Create(MovimentacaoDTO movimentacao);
+        Task<List<MovimentacaoDTO>> GetData();
+
     }
 }

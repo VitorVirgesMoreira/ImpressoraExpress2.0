@@ -11,8 +11,7 @@ namespace BLL.Interfaces
         Task Insert(MovimentacaoDTO movimentacao);
         Task Update(MovimentacaoDTO movimentacao);
         Task<List<MovimentacaoDTO>> GetData();
-        Task<List<MovimentacaoDTO>> GetMovimentacoes(int page, int size);
-        Task<MovimentacaoDTO> GetMovimentacaoByID(int id);
+        
 
     }
 }

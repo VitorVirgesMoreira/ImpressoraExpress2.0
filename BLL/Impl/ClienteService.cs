@@ -17,39 +17,20 @@ namespace BLL.Impl
     public class ClienteService : BaseService, IClienteService
     {
         private readonly IClienteRepository repository;
-        private ExpressDbContext _context;
-        public ClienteService(ExpressDbContext context)
-        {
-            _context = context;
-        }
-        public ClienteService()
-        {
-        }
 
         public ClienteService(IClienteRepository repository)
         {
             this.repository = repository;
         }
+
         public async Task<List<ClienteDTO>> GetData()
         {
-           
-            try
-            {
-               
-                    return await _context.Clientes.ToListAsync();
-               
-            }
-            catch (Exception ex)
-            {
-                File.WriteAllText("log.txt", ex.Message + "-" + ex.StackTrace);
-                throw new Exception("Erro no Banco de dados, contate o administrador");
-            }
-            
+            return await repository.GetData();
         }
 
         public async Task Insert(ClienteDTO cliente)
         {
-            
+
             List<Error> errors = new List<Error>();
             if (string.IsNullOrWhiteSpace(cliente.Nome))
             {
@@ -69,7 +50,7 @@ namespace BLL.Impl
             {
                 base.AddError("CPF", "CPF deve conter 11 caracteres.");
             }
-            else if(!cpf.IsCpf())
+            else if (!cpf.IsCpf())
             {
                 base.AddError("CPF", "CPF inválido");
             }
@@ -78,7 +59,7 @@ namespace BLL.Impl
             {
                 base.AddError("Email", "Email deve ser informado");
             }
-            else if(cliente.Email.Length < 5 || cliente.Email.Length > 60)
+            else if (cliente.Email.Length < 5 || cliente.Email.Length > 60)
             {
                 base.AddError("Email", "Email deve conter entre 5 e 60 caracteres.");
             }
@@ -96,26 +77,13 @@ namespace BLL.Impl
             }
 
             base.CheckErrors();
-            //try
-            //{
-            //    using (ExpressDbContext context = new ExpressDbContext())
-            //    {
-            //        context.Clientes.Add(cliente);
-            //        await context.SaveChangesAsync();
-
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
-            //    throw new Exception("Erro no banco de dados, contate o admnistrador.");
-            //}
-            //return;
 
             await repository.Create(cliente);
-
         }
 
-        
+        public Task Update(ClienteDTO cliente)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -9,6 +9,8 @@ namespace BLL.Interfaces
     public interface IUsuarioService
     {
         Task Create(UsuarioDTO usuario);
+        Task<List<UsuarioDTO>> GetData();
+
         Task<UsuarioDTO> Authenticate(string email, string password);
     }
 }

@@ -45,20 +45,7 @@ namespace BLL.Impl
                 base.AddError("Valor", "Valor da impressora deve ser maior que R$150,00");
             }
             base.CheckErrors();
-            //try
-            //{
-            //    using (ExpressDbContext context = new ExpressDbContext())
-            //    {
-            //        context.Impressoras.Add(impressora);
-            //        await context.SaveChangesAsync();
-
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
-            //    throw new Exception("Erro no banco de dados, contate o admnistrador.");
-            //}
+            
             await repository.Create(impressora);
         }
 
@@ -76,14 +63,9 @@ namespace BLL.Impl
             throw new NotImplementedException();
         }
 
-        System.Threading.Tasks.Task<List<ImpressoraDTO>> IImpressoraService.GetImpressoras(int page, int size)
+        public async Task<List<ImpressoraDTO>> GetData()
         {
-            throw new NotImplementedException();
-        }
-
-        System.Threading.Tasks.Task<ImpressoraDTO> IImpressoraService.GetImpressoraByID(int id)
-        {
-            throw new NotImplementedException();
+            return await repository.GetData();
         }
     }
 

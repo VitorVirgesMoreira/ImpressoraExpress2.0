@@ -10,7 +10,7 @@ namespace BLL.Interfaces
     {
         Task Insert(ImpressoraDTO impressora);
         Task Update(ImpressoraDTO impressora);
-        Task<List<ImpressoraDTO>> GetImpressoras(int page, int size);
-        Task<ImpressoraDTO> GetImpressoraByID(int id);
+        Task<List<ImpressoraDTO>> GetData();
+
     }
 }

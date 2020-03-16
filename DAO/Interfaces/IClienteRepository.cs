@@ -9,6 +9,7 @@ namespace DAO.Interfaces
     public interface IClienteRepository
     {
         Task Create(ClienteDTO cliente);
+        Task<List<ClienteDTO>> GetData();
       
     }
 }

@@ -2,6 +2,8 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,6 +34,19 @@ namespace DAO.Repository
                     throw new Exception("Nome do modelo já existe");
                 }
                 throw new Exception("Erro no banco de dados");
+            }
+        }
+
+        public async Task<List<ImpressoraDTO>> GetData()
+        {
+            try
+            {
+                return await _context.Impressoras.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                File.WriteAllText("log.txt", ex.Message + "-" + ex.StackTrace);
+                throw new Exception("Erro no Banco de dados, contate o administrador");
             }
         }
     }

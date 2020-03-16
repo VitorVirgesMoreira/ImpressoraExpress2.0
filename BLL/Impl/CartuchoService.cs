@@ -20,14 +20,10 @@ namespace BLL.Impl
         {
             this.repository = repository;
         }
-        public Task<CartuchoDTO> GetCartuchoByID(int id)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<List<CartuchoDTO>> GetCartuchos(int page, int size)
+        public async Task<List<CartuchoDTO>> GetData()
         {
-            throw new NotImplementedException();
+            return await repository.GetData();
         }
 
         public async Task Insert(CartuchoDTO cartucho)
@@ -42,29 +38,13 @@ namespace BLL.Impl
                 base.AddError("NomeModelo", "O nome do modelo deve conter entre 5 e 150 caracteres");
             }
 
-            
+
             if (cartucho.ValorUnitario < 30)
             {
                 base.AddError("ValorUnitario", "Valor de unidade deve ser maior que R$30,00.");
             }
-          
-            
-
             base.CheckErrors();
-            //try
-            //{
-            //    using (ExpressDbContext context = new ExpressDbContext())
-            //    {
-            //        context.Cartuchos.Add(cartucho);
-            //        await context.SaveChangesAsync();
 
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
-            //    throw new Exception("Erro no banco de dados, contate o admnistrador.");
-            //}
             await repository.Create(cartucho);
 
         }
@@ -74,14 +54,6 @@ namespace BLL.Impl
             throw new NotImplementedException();
         }
 
-        System.Threading.Tasks.Task<CartuchoDTO> ICartuchoService.GetCartuchoByID(int id)
-        {
-            throw new NotImplementedException();
-        }
 
-        System.Threading.Tasks.Task<List<CartuchoDTO>> ICartuchoService.GetCartuchos(int page, int size)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

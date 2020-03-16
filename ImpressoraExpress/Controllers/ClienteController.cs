@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using BLL.Impl;
+using BLL.Interfaces;
 using DTO;
 using ImpressoraExpressMVC.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -12,13 +13,19 @@ namespace ImpressoraExpressMVC.Controllers
 {
     public class ClienteController : Controller
     {
+        private readonly IClienteService service;
+
+        public ClienteController(IClienteService service)
+        {
+            this.service = service;
+        }
         [HttpGet]
-        public async System.Threading.Tasks.Task<IActionResult> Cadastrar()
+        public async Task<IActionResult> Cadastrar()
         {
             return View();
         }
         [HttpPost]
-        public async System.Threading.Tasks.Task<IActionResult> Cadastrar(ClienteViewModel viewModel)
+        public async Task<IActionResult> Cadastrar(ClienteViewModel viewModel)
         {
 
             var configuration = new MapperConfiguration(cfg =>
@@ -28,10 +35,9 @@ namespace ImpressoraExpressMVC.Controllers
             IMapper mapper = configuration.CreateMapper();
             ClienteDTO dto = mapper.Map<ClienteDTO>(viewModel);
 
-            ClienteService svc = new ClienteService();
             try
             {
-                await svc.Insert(dto);
+                await service.Insert(dto);
                 return RedirectToAction("Index", "Cliente");
             }
             catch (Exception ex)

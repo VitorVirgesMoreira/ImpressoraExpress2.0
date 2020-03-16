@@ -18,19 +18,9 @@ namespace BLL.Impl
         {
             this.respository = respository;
         }
-        public Task<List<MovimentacaoDTO>> GetData()
+        public async Task<List<MovimentacaoDTO>> GetData()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<MovimentacaoDTO> GetMovimentacaoByID(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<MovimentacaoDTO>> GetMovimentacoes(int page, int size)
-        {
-            throw new NotImplementedException();
+            return await respository.GetData();
         }
 
         public async Task Insert(MovimentacaoDTO movimentacao)
@@ -50,27 +40,14 @@ namespace BLL.Impl
             {
                 base.AddError("QuantidadeCartucho","Quantidade deve ser maior que zero");
             }
-            //Continuar daqui
+
             if (movimentacao.ValorTotalOrcamento <= 0)
             {
                 base.AddError("ValorTotalOrcamento", "Orçamento muito baixo, essa empresa vai falir.");
             }
 
             base.CheckErrors();
-            //try
-            //{
-            //    using (ExpressDbContext context = new ExpressDbContext())
-            //    {
-            //        context.Movimentacoes.Add(movimentacao);
-            //        await context.SaveChangesAsync();
-
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
-            //    throw new Exception("Erro no banco de dados, contate o admnistrador.");
-            //}
+            
             await respository.Create(movimentacao);
         }
 
@@ -79,19 +56,5 @@ namespace BLL.Impl
             throw new NotImplementedException();
         }
 
-        System.Threading.Tasks.Task<List<MovimentacaoDTO>> IMovimentacaoService.GetData()
-        {
-            throw new NotImplementedException();
-        }
-
-        System.Threading.Tasks.Task<MovimentacaoDTO> IMovimentacaoService.GetMovimentacaoByID(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        System.Threading.Tasks.Task<List<MovimentacaoDTO>> IMovimentacaoService.GetMovimentacoes(int page, int size)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

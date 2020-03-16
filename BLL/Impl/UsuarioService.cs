@@ -20,6 +20,12 @@ namespace BLL.Impl
         {
             this.repository = repository;
         }
+
+        public async Task<UsuarioDTO> Authenticate(string email, string password)
+        {
+            return await repository.Authenticate(email, password);
+        }
+
         public async Task Create(UsuarioDTO usuario)
         {
             List<Error> errors = new List<Error>();
@@ -65,32 +71,14 @@ namespace BLL.Impl
             }
 
             base.CheckErrors();
-            //try
-            //{
-            //    using (ExpressDbContext context = new ExpressDbContext())
-            //    {
-            //        context.Usuarios.Add(usuario);
-            //        await context.SaveChangesAsync();
-
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
-            //    throw new Exception("Erro no banco de dados, contate o admnistrador.");
-            //}
-            //await repository.Create(usuario);
 
             await repository.Create(usuario);
 
         }
 
-        
-
-        System.Threading.Tasks.Task<UsuarioDTO> IUsuarioService.Authenticate(string email, string password)
+        public async Task<List<UsuarioDTO>> GetData()
         {
-            return repository.Authenticate(email, password);
-
+            return await repository.GetData();
         }
     }
 }

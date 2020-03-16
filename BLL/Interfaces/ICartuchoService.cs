@@ -10,7 +10,7 @@ namespace BLL.Interfaces
     {
         Task Insert(CartuchoDTO cartucho);
         Task Update(CartuchoDTO cartucho);
-        Task<List<CartuchoDTO>> GetCartuchos(int page, int size);
-        Task<CartuchoDTO> GetCartuchoByID(int id);
+        Task<List<CartuchoDTO>> GetData();
+
     }
 }
