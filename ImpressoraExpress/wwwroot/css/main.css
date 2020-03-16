@@ -181,9 +181,10 @@ iframe {
     justify-content: center;
     align-items: center;
     padding: 15px;
-    background: url(https://images.vexels.com/media/users/3/127206/isolated/lists/4972c9080db1ed795d008b81e2833b71-blue-printer-line-icon-svg.png);
-    background-repeat:no-repeat;
     background: linear-gradient(to bottom, #829894, #6c8488, #5d6e7a, #535968, #4b4453);
+    background-repeat:no-repeat;
+    <div style='position:absolute; top:110px; left:6px;'>
+      <img src=https://images.vexels.com/media/users/3/127206/isolated/lists/4972c9080db1ed795d008b81e2833b71-blue-printer-line-icon-svg.png.
 }
 
 
