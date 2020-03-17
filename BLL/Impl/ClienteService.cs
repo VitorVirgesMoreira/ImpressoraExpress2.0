@@ -45,9 +45,9 @@ namespace BLL.Impl
             {
                 base.AddError("CPF", "CPF deve ser informado");
             }
-            else if (cpf.Length != 11)
+            else if (cpf.Length != 14)
             {
-                base.AddError("CPF", "CPF deve conter 11 caracteres.");
+                base.AddError("CPF", "CPF deve conter 14 caracteres.");
             }
             else if (!cpf.IsCpf())
             {
@@ -65,12 +65,12 @@ namespace BLL.Impl
 
             TimeSpan dezesseisAnosDeVida = new TimeSpan(5844, 0, 0, 0);
             TimeSpan centoEQuinzeAnosDeVida = new TimeSpan(42004, 0, 0, 0);
-            if (DateTime.Now.Subtract(dezesseisAnosDeVida).Date > cliente.DataNascimento)
+            if (DateTime.Now.Subtract(dezesseisAnosDeVida).Day > cliente.DataNascimento.Day)
             {
                 base.AddError("DataNascimento", "Você deve possuir acima de 16 anos para se cadastrar!");
 
             }
-            else if (DateTime.Now.Subtract(centoEQuinzeAnosDeVida).Date > cliente.DataNascimento)
+            else if (DateTime.Now.Subtract(centoEQuinzeAnosDeVida).Day > cliente.DataNascimento.Day)
             {
                 base.AddError("DataNascimento", "Você deve possuir menos de 115 anos meo, milagres acontecem.");
             }
