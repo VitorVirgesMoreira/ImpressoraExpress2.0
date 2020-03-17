@@ -10,30 +10,56 @@
     <title>Cadastrar Impressora</title>
 </head>
 <body>
-    <form method="post">
-        <div class="form-group">
-            <label class="control-label col-md-2">Modelo </label>
-            <div class="col-md-10">
-                <input class="form-control" type="text" name="Modelo" id="Modelo" />
-                <span class="text-danger" id="erroModelo" name="erroModelo"></span>
-            </div>
-        </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Valor</label>
-            <div class="col-md-10">
-                <input class="form-control" type="number" name="Valor" id="Valor" />
-                <span class="text-danger" id="erroValor" name="erroValor"></span>
+    <div>
+        @{
+            List<Common.Error> errors = new List<Common.Error>();
+            if (ViewBag.Errors != null)
+            {
+                errors = ViewBag.Errors;
+            }
+        }
+        <form method="post">
+            <div class="form-group">
+                <label class="control-label col-md-2">Modelo Impressora</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" name="Modelo" id="Modelo" />
+                    <span class="text-danger" id="erroModelo" name="erroModelo">
+                        @{
+                            Common.Error erro = errors.FirstOrDefault(c => c.FieldName == "Modelo");
+                            if (erro != null)
+                            {
+                                <text>@erro.Message</text>
+                            }
+                        }
+                    </span>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-10">
-                <input name="BotaoEnviar" id="BotaoEnviar" type="submit" value="Cadastrar" />
+            <div class="form-group">
+                <label class="control-label col-md-2">Valor Impressora</label>
+                <div class="col-md-10">
+                    <input class="money" type="text" name="Valor" id="Valor" />
+                    <span class="text-danger" id="erroValor" name="erroValor">
+                        @{
+                            erro = errors.FirstOrDefault(c => c.FieldName == "Valor");
+                            if (erro != null)
+                            {
+                                <text>@erro.Message</text>
+                            }
+                        }
+                    </span>
+                </div>
             </div>
-        </div>
 
-    </form>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input name="BotaoEnviar" id="BotaoEnviar" type="submit" value="Cadastrar" />
+                </div>
+            </div>
+
+        </form>
+    </div>
 </body>
 </html>
 
@@ -45,7 +71,7 @@
         $(document).ready(function () {
 
 
-
+            $('.money').mask("#.##0,00", { reverse: true });
             $("#BotaoEnviar").click(function (e) {
 
                 var modelo = $("#Modelo").val();

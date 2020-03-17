@@ -20,7 +20,7 @@ namespace ImpressoraExpressMVC.Controllers
             this.service = service;
         }
         //Controllers
-       [HttpGet]
+        [HttpGet]
         public async Task<IActionResult> Cadastrar()
         {
             return View();
@@ -45,9 +45,8 @@ namespace ImpressoraExpressMVC.Controllers
             catch (Exception ex)
             {
                 ViewBag.Erros = ex.Message;
-                return View();
             }
-            
+            return View();
         }
 
         public IActionResult Index()

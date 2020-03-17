@@ -7,7 +7,9 @@ using BLL.Impl;
 using BLL.Interfaces;
 using DTO;
 using ImpressoraExpressMVC.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace ImpressoraExpressMVC.Controllers
 {
@@ -28,7 +30,6 @@ namespace ImpressoraExpressMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Cadastrar(UsuarioViewModel viewModel)
         {
-
             var configuration = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<UsuarioViewModel, UsuarioDTO>();
@@ -52,20 +53,36 @@ namespace ImpressoraExpressMVC.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Login(string email, string password)
+        [HttpGet]
+        public async Task<IActionResult> Login() 
         {
-
-            //try
-            //{
-            //    await service.Authenticate(email, password);
-            //}
-            //catch (Exception)
-            //{
-
-            //    throw;
-            //}
             return View();
-            
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(string email, string password, bool isPersistent)
+        {
+            try
+            {
+                UsuarioDTO usuario = await service.Authenticate(email, password);
+                if (isPersistent)
+                {
+                    CookieOptions options = new CookieOptions();
+                    options.Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies.Append(email, password, options);
+                }
+                else
+                {
+                    Response.Cookies.Append(email, password);
+                }
+                return RedirectToAction("Controlar", "Movimentacao");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Erros = ex.Message;
+            }
+            return View();
+
         }
     }
 }
