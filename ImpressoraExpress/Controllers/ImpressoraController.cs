@@ -28,7 +28,6 @@ namespace ImpressoraExpressMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Cadastrar(ImpressoraViewModel viewModel)
         {
-
             var configuration = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<ImpressoraViewModel, ImpressoraDTO>();
