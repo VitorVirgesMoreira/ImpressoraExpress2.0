@@ -25,7 +25,6 @@ namespace DAO.Repository
             }
             catch (Exception ex)
             {
-
                 if (ex.InnerException != null && ex.InnerException.InnerException.Message.Contains("Email"))
                 {
                     throw new Exception("Esse email ja possui cadaastro");
