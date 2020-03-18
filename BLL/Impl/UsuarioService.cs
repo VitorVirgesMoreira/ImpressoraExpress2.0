@@ -65,7 +65,7 @@ namespace BLL.Impl
             {
                 base.AddError("Senha", "Senha deve ser informada");
             }
-            else if (usuario.Email.Length < 5 || usuario.Email.Length > 70)
+            else if (usuario.Senha.Length < 5 || usuario.Senha.Length > 70)
             {
                 base.AddError("Senha", "Senha deve conter entre 5 e 70 caracteres.");
             }
