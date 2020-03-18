@@ -29,7 +29,7 @@ namespace BLL.Impl
             {
                 base.AddError("Modelo", "Modelo deve ser informado");
             }
-            else if (impressora.Modelo.Length < 5 || impressora.Modelo.Length > 50)
+            else if (impressora.Modelo.Length < 5 || impressora.Modelo.Length > 150)
             {
                 base.AddError("Modelo", "Modelo deve conter entre 5 a 50 caracteres!");
             }

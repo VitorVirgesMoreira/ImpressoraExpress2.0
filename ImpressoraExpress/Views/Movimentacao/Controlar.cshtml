@@ -41,3 +41,95 @@
 
 <!-- Link para redirecionar -->
 <!-- <li><a href="/Cartucho/Cadastrar"><i class="form-check"></i> Linkzinho marotão do cachorrão</a></li> -->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Movimentacao</title>
+</head>
+<body>
+    <div>
+        <form method="post">
+            <div class="form-group">
+                <label class="control-label col-md-2">Data Locacao</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="date" name="dataLocacao" id="dataLocacao" />
+                    <span class="text-danger" id="erroDataLocacao" name="erroDataLocacao"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Data Devolucao</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="date" name="DataDevolucao" id="DataDevolucao" />
+                    <span class="text-danger" id="erroDataDevolucao" name="erroDataDevolucao"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Quantidade Cartucho</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="number" min="1" max="900" name="QuantidadeCartucho" id="QuantidadeCartucho" />
+                    <span class="text-danger" id="erroQuantidadeCartucho" name="erroQuantidadeCartucho"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input name="BotaoEnviar" id="BotaoEnviar" type="submit" value="Cadastrar" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>
+
+@section scripts{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            debugger
+
+            $("#BotaoEnviar").click(function (e) {
+
+                var dataLocacao = $("#DataLocacao").val();
+                var dataDevolucao = $("#DataDevolucao").val();
+                var quantidadeCartucho = $("#QuantidadeCartucho").val();
+
+                var sucesso = true;
+
+                if (dataLocacao == "") {
+                    $("#erroDataLocacao").html("Data de localção deve ser informada.");
+                    sucesso = false;
+                }
+                if (dataDevolucao == "") {
+                    $("#erroDataDevolucao").html("Data de devolução deve ser informado.");
+                    sucesso = false;
+                }
+                if (quantidadeCartucho == "") {
+                    $("#erroQuantidadeCartucho").html("Quantidade deve ser informado.");
+                    sucesso = false;
+                }
+                else if (quantidadeCartucho.length < 0) {
+                    $("#erroQuantidadeCartucho").html("Quantidade deve ser maior que 0.");
+                    sucesso = false;
+                }
+                else {
+                    $("#erroQuantidadeCartucho").html("");
+                }
+
+                if (!sucesso) {
+                    e.preventDefault();
+                }
+
+
+            });
+        });
+    </script>
+
+}
+

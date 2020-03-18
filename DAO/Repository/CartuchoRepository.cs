@@ -18,13 +18,13 @@ namespace DAO.Repository
         }
         public async Task Create(CartuchoDTO cartucho)
         {
-			try
-			{
-                    _context.Cartuchos.Add(cartucho);
-                    await _context.SaveChangesAsync();
+            try
+            {
+                _context.Cartuchos.Add(cartucho);
+                await _context.SaveChangesAsync();
             }
-			catch (Exception ex)
-			{
+            catch (Exception ex)
+            {
                 if (ex.InnerException != null && ex.InnerException.InnerException.Message.Contains("NomeModelo"))
                 {
                     throw new Exception("Nome do modelo já existe");

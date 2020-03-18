@@ -43,9 +43,9 @@ namespace BLL.Impl
             {
                 base.AddError("CPF", "CPF deve ser informado");
             }
-            else if (cpf.Length > 11)
+            else if (cpf.Length != 14)
             {
-                base.AddError("CPF", "CPF deve conter 11 caracteres.");
+                base.AddError("CPF", "CPF deve conter 14 caracteres.");
             }
             else if (!cpf.IsCpf())
             {
