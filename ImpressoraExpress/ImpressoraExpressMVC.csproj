@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <None Include="appconfig.json" />
+    <None Include="wwwroot\css\sass\ready.scss" />
+    <None Include="wwwroot\css\sass\style.scss" />
     <None Include="wwwroot\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <None Include="wwwroot\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
     <None Include="wwwroot\fonts\font-awesome-4.7.0\less\animated.less" />
@@ -42,6 +44,8 @@
     <None Include="wwwroot\fonts\font-awesome-4.7.0\scss\_variables.scss" />
     <None Include="wwwroot\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.svg" />
     <None Include="wwwroot\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff2" />
+    <None Include="wwwroot\icon-fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\icon-fonts\fontawesome-webfont.woff2" />
     <None Include="wwwroot\vendor\animsition\js\animsition.js" />
     <None Include="wwwroot\vendor\animsition\js\animsition.min.js" />
     <None Include="wwwroot\vendor\bootstrap\css\bootstrap-grid.css.map" />
