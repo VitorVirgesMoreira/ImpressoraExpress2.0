@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ImpressoraExpressMVC.Controllers
 {
-    public class CartuchoController : Controller
+    public class CartuchoController : BaseController
     {
         private readonly ICartuchoService service;
 

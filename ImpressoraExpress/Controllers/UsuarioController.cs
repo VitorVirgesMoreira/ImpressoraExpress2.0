@@ -60,21 +60,14 @@ namespace ImpressoraExpressMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(string email, string password, bool isPersistent)
+        public async Task<IActionResult> Login(string email, string password)
         {
+            CookieOptions cookie = new CookieOptions();
             try
             {
                 UsuarioDTO usuario = await service.Authenticate(email, password);
-                if (isPersistent)
-                {
-                    CookieOptions options = new CookieOptions();
-                    options.Expires = DateTime.Now.AddDays(1);
-                    Response.Cookies.Append(email, password, options);
-                }
-                else
-                {
-                    Response.Cookies.Append(email, password);
-                }
+                Response.Cookies.Append("CookieUsuario", usuario.ID.ToString(), cookie);
+                cookie.Expires = DateTime.Now.AddDays(7);
                 return RedirectToAction("Controlar", "Movimentacao");
             }
             catch (Exception ex)

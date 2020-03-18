@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ImpressoraExpressMVC.Controllers
 {
-    public class ImpressoraController : Controller
+    public class ImpressoraController : BaseController
     {
         private readonly IImpressoraService service;
 
