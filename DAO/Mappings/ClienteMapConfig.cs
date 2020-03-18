@@ -34,6 +34,8 @@ namespace DAO.Mappings
 
             builder.Property(c => c.Nome)
                 .HasMaxLength(50);
+
+           
         }
     }
 
