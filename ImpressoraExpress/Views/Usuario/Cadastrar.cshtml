@@ -4,7 +4,39 @@
 }
 
 <!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <title>Impressora Express</title>
+    <link rel="Sidebar.css" href="css." />
 
+</head>
+<body>
+    <div>
+        <form method="post">
+            <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+            <input type="checkbox" id="check">
+            <label for="check">
+                <i class="fas fa-bars" id="btn"></i>
+                <i class="fas fa-times" id="cancel"></i>
+                <i class="fas fa-bars" id="btn"></i>
+            </label>
+            <div class="sidebar">
+                <header>Express</header>
+                <ul>
+                    <li><a href="/Cliente/Cadastrar"><i class="fas fa-user"></i>Cliente</a></li>
+                    <li><a href="/Cartucho/Cadastrar"><i class="fas fa-broom"></i>Cartuchos</a></li>
+                    <li><a href="/Impressora/Cadastrar"><i class="fas fa-archive"></i>Impressoras</a></li>
+                    <li><a href="/Movimentacao/Controlar"><i class="fas fa-shopping-cart"></i>Locações</a></li>
+                    <li><a href="#"><i class="fas fa-phone"></i>Contato</a></li>
+                </ul>
+            </div>
+            <section></section>
+        </form>
+    </div>
+</body>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -71,80 +103,80 @@
 
 @section scripts{
 
-<script type="text/javascript">
-   
-    //Este evento será disparado quando todo o DOM (Document Object Model) for carregado.
-    $(document).ready(function () {
+    <script type="text/javascript">
 
-        var cpfMask = $("#CPF");
-        cpfMask.mask('000.000.000-00', { reverse: false });
+        //Este evento será disparado quando todo o DOM (Document Object Model) for carregado.
+        $(document).ready(function () {
 
-        $("#BotaoEnviar").click(function (e) {
+            var cpfMask = $("#CPF");
+            cpfMask.mask('000.000.000-00', { reverse: false });
 
-            var nome = $("#Nome").val();
-            var cpf = $("#CPF").val();
-            var email = $("#Email").val();
-            var senha = $("#Senha").val();
-            var permissao = $("#Permissao").val();
+            $("#BotaoEnviar").click(function (e) {
 
-
-            var sucesso = true;
-
-            if (nome == "") {
-                $("#erroNome").html("Nome deve ser informado.");
-                sucesso = false;
-            }
-            else if (nome.length < 5 || nome.length > 40) {
-                $("#erroNome").html("Nome deve conter entre 5 e 40 caracteres.");
-                sucesso = false;
-            }
-            else {
-                $("#erroNome").html("");
-            }
-
-            if (cpf == "") {
-                $("#erroCPF").html("CPF deve ser informado.");
-                sucesso = false;
-            }
-            else if (cpf.length != 14) {
-                $("#erroCPF").html("CPF deve conter 14 caracteres.");
-                sucesso = false;
-            }
-            else {
-                $("#erroCPF").html("");
-            }
-
-            if (email == "") {
-                $("#erroEmail").html("O email deve ser informado.");
-                sucesso = false;
-            }
-            else if (!validateEmail(email)) {
-                $("#erroEmail").html("Email inválido.");
-                sucesso = false;
-            }
-            else {
-                $("#erroEmail").html("");
-            }
+                var nome = $("#Nome").val();
+                var cpf = $("#CPF").val();
+                var email = $("#Email").val();
+                var senha = $("#Senha").val();
+                var permissao = $("#Permissao").val();
 
 
-            if (senha == "") {
-                 $("#erroSenha").html("A senha deve ser informada.");
-                sucesso = false;
-            }
-            if (senha.length < 6 || senha.length > 16) {
-                $("#erroSenha").html("Senha deve conter entre 6 e 16 caracteres");
-                sucesso = false;
-            }
+                var sucesso = true;
+
+                if (nome == "") {
+                    $("#erroNome").html("Nome deve ser informado.");
+                    sucesso = false;
+                }
+                else if (nome.length < 5 || nome.length > 40) {
+                    $("#erroNome").html("Nome deve conter entre 5 e 40 caracteres.");
+                    sucesso = false;
+                }
+                else {
+                    $("#erroNome").html("");
+                }
+
+                if (cpf == "") {
+                    $("#erroCPF").html("CPF deve ser informado.");
+                    sucesso = false;
+                }
+                else if (cpf.length != 14) {
+                    $("#erroCPF").html("CPF deve conter 14 caracteres.");
+                    sucesso = false;
+                }
+                else {
+                    $("#erroCPF").html("");
+                }
+
+                if (email == "") {
+                    $("#erroEmail").html("O email deve ser informado.");
+                    sucesso = false;
+                }
+                else if (!validateEmail(email)) {
+                    $("#erroEmail").html("Email inválido.");
+                    sucesso = false;
+                }
+                else {
+                    $("#erroEmail").html("");
+                }
 
 
-            if (!sucesso) {
-                e.preventDefault();
-            }
+                if (senha == "") {
+                    $("#erroSenha").html("A senha deve ser informada.");
+                    sucesso = false;
+                }
+                if (senha.length < 6 || senha.length > 16) {
+                    $("#erroSenha").html("Senha deve conter entre 6 e 16 caracteres");
+                    sucesso = false;
+                }
 
+
+                if (!sucesso) {
+                    e.preventDefault();
+                }
+
+
+            });
 
         });
-
-    });
-</script>
+    </script>
 
 }

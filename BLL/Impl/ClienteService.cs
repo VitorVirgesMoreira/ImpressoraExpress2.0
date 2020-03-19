@@ -65,15 +65,16 @@ namespace BLL.Impl
 
             TimeSpan dezesseisAnosDeVida = new TimeSpan(5844, 0, 0, 0);
             TimeSpan centoEQuinzeAnosDeVida = new TimeSpan(42004, 0, 0, 0);
-            if (DateTime.Now.Subtract(dezesseisAnosDeVida).Day > cliente.DataNascimento.Day)
+            if (DateTime.Now.Subtract(dezesseisAnosDeVida).Day > cliente.DataNascimento.DayOfYear)
             {
                 base.AddError("DataNascimento", "Você deve possuir acima de 16 anos para se cadastrar!");
 
             }
-            else if (DateTime.Now.Subtract(centoEQuinzeAnosDeVida).Day > cliente.DataNascimento.Day)
+            else if (DateTime.Now.Subtract(centoEQuinzeAnosDeVida).Day > cliente.DataNascimento.DayOfYear)
             {
                 base.AddError("DataNascimento", "Você deve possuir menos de 115 anos meo, milagres acontecem.");
             }
+            
 
             base.CheckErrors();
 

@@ -46,7 +46,7 @@ namespace ImpressoraExpressMVC.Controllers
             }
             return View();
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
         }
