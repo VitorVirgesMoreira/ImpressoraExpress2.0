@@ -10,8 +10,8 @@
 
   <ItemGroup>
     <None Include="appconfig.json" />
-    <None Include="wwwroot\css\sass\ready.scss" />
-    <None Include="wwwroot\css\sass\style.scss" />
+    <None Include="wwwroot\sass\ready.scss" />
+    <None Include="wwwroot\sass\style.scss" />
     <None Include="wwwroot\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <None Include="wwwroot\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
     <None Include="wwwroot\fonts\font-awesome-4.7.0\less\animated.less" />
