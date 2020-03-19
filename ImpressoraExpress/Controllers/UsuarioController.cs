@@ -68,7 +68,7 @@ namespace ImpressoraExpressMVC.Controllers
                 UsuarioDTO usuario = await service.Authenticate(email, password);
                 Response.Cookies.Append("CookieUsuario", usuario.ID.ToString(), cookie);
                 cookie.Expires = DateTime.Now.AddDays(7);
-                return RedirectToAction("Menu", "Menu");
+                return RedirectToAction("Controlar", "Movimentacao");
             }
             catch (Exception ex)
             {
