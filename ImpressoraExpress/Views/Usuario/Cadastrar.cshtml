@@ -35,69 +35,125 @@
         </form>
     </div>
 </body>
+</html>
 
-<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Cadastrar Usuário</title>
 </head>
 <body>
-    <form method="post">
-        <div class="form-group">
-            <label class="control-label col-md-2">Nome</label>
-            <div class="col-md-10">
-                <input class="form-control" type="text" name="Nome" id="Nome" />
-                <span class="text-danger" id="erroNome" name="erroNome"></span>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">CPF</label>
-            <div class="col-md-10">
-                <input class="form-control" type="text" name="CPF" id="CPF" />
-                <span class="text-danger" id="erroCPF" name="erroCPF"></span>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Email</label>
-            <div class="col-md-10">
-                <input class="form-control" type="text" name="Email" id="Email" />
-                <span class="text-danger" id="erroEmail" name="erroEmail"></span>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Senha</label>
-            <div class="col-md-10">
-                <input class="form-control" type="text" name="Senha" id="Senha" />
-                <span class="text-danger" id="erroSenha" name="erroSenha"></span>
-            </div>
-        </div>
-        @{
-            string[] permissao = Enum.GetNames(typeof(DTO.Enum.Permissao));
+    @{
+        List<Common.Error> errors = new List<Common.Error>();
+        if (ViewBag.Errors != null)
+        {
+            errors = ViewBag.Errors;
         }
-
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Permissões</label>
-            <div class="col-md-10">
-                <select class="form-control" name="Permissao" id="Permissao">
-                    @for (int i = 0; i < permissao.Length; i++)
-                    {
-                        <option value="@i">@permissao[i]</option>
-                    }
-                </select>
+    }
+    <div>
+        <form method="post">
+            <div class="form-group">
+                <label class="control-label col-md-2">Nome</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" name="Nome" id="Nome" />
+                    <span class="text-danger" id="erroNome" name="erroNome">
+                        @{
+                            Common.Error erro = errors.FirstOrDefault(c => c.FieldName == "Nome");
+                            if (erro != null)
+                            {
+                                <text>@erro.Message</text>
+                            }
+                        }
+                    </span>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-10">
-                <input name="BotaoEnviar" id="BotaoEnviar" type="submit" value="Cadastrar" />
+            <div class="form-group">
+                <label class="control-label col-md-2">CPF</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" name="CPF" id="CPF" />
+                    <span class="text-danger" id="erroCPF" name="erroCPF">
+                        @{
+                            erro = errors.FirstOrDefault(c => c.FieldName == "CPF");
+                            if (erro != null)
+                            {
+                                <text>@erro.Message</text>
+                            }
+                        }
+                    </span>
+                </div>
             </div>
-        </div>
-    </form>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Email</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" name="Email" id="Email" />
+                    <span class="text-danger" id="erroEmail" name="erroEmail">
+                        @{
+                            erro = errors.FirstOrDefault(c => c.FieldName == "Email");
+                            if (erro != null)
+                            {
+                                <text>@erro.Message</text>
+                            }
+                        }
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Senha</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" name="Senha" id="Senha" />
+                    <span class="text-danger" id="erroSenha" name="erroSenha">
+                        @{
+                            erro = errors.FirstOrDefault(c => c.FieldName == "Senha");
+                            if (erro != null)
+                            {
+                                <text>@erro.Message</text>
+                            }
+                        }
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Confirmar Senha</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" name="ConfirmarSenha" id="ConfirmarSenha" />
+                    <span class="text-danger" id="erroConfirmarSenha" name="erroConfirmarSenha">
+                        @{
+                            erro = errors.FirstOrDefault(c => c.FieldName == "ConfirmarSenha");
+                            if (erro != null)
+                            {
+                                <text>@erro.Message</text>
+                            }
+                        }
+                    </span>
+                </div>
+            </div>
+
+            @{
+                string[] permissao = Enum.GetNames(typeof(DTO.Enum.Permissao));
+            }
+            <div class="form-group">
+                <label class="control-label col-md-2">Permissões</label>
+                <div class="col-md-10">
+                    <select class="form-control" name="Permissao" id="Permissao">
+                        @for (int i = 0; i < permissao.Length; i++)
+                        {
+                            <option value="@i">@permissao[i]</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input name="BotaoEnviar" id="BotaoEnviar" type="submit" value="Cadastrar" />
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
 
@@ -117,6 +173,7 @@
                 var cpf = $("#CPF").val();
                 var email = $("#Email").val();
                 var senha = $("#Senha").val();
+                var confirmarSenha = $("#ConfirmarSenha").val();
                 var permissao = $("#Permissao").val();
 
 
@@ -163,11 +220,25 @@
                     $("#erroSenha").html("A senha deve ser informada.");
                     sucesso = false;
                 }
-                if (senha.length < 6 || senha.length > 16) {
+                else if (senha.length < 6 || senha.length > 16) {
                     $("#erroSenha").html("Senha deve conter entre 6 e 16 caracteres");
                     sucesso = false;
                 }
+                else {
+                    $("#erroSenha").html("");
+                }
 
+                if (confirmarSenha == "") {
+                    $("#erroConfirmarSenha").html("A senha deve ser informada novamente.");
+                    sucesso = false;
+                }
+                if (confirmarSenha != senha) {
+                    $("#erroConfirmarSenha").html("Senha errada, informe novamente certo.");
+                    sucesso = false;
+                }
+                else {
+                    $("#erroConfirmarSenha").html("");
+                }
 
                 if (!sucesso) {
                     e.preventDefault();

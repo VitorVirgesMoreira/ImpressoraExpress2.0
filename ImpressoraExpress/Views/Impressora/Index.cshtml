@@ -1,0 +1,38 @@
+﻿@model List<ImpressoraExpressMVC.Models.ImpressoraViewModel>
+
+
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Impressoras Cadastradas</title>
+</head>
+<body>
+    <h2>Impressoras Cadastradas</h2>
+    <div>
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Modelo</th>
+                <th>Valor</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Modelo</td>
+                    <td>@item.Valor.ToString("C2")</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</body>
+</html>

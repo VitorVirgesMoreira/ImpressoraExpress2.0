@@ -46,9 +46,18 @@ namespace ImpressoraExpressMVC.Controllers
             }
             return View();
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            List<ImpressoraDTO> impressoras = await service.GetData();
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<ImpressoraDTO, ImpressoraViewModel>();
+            });
+
+            IMapper mapper = configuration.CreateMapper();
+            List<ImpressoraViewModel> dados = mapper.Map<List<ImpressoraViewModel>>(impressoras);
+
+            return View(dados);
         }
     }
 }

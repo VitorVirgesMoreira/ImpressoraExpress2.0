@@ -14,11 +14,12 @@ namespace ImpressoraExpressMVC.Controllers
     public class ClienteController : BaseController
     {
         private readonly IClienteService service;
-
         public ClienteController(IClienteService service)
         {
             this.service = service;
         }
+
+
         [HttpGet]
         public async Task<IActionResult> Cadastrar()
         {
@@ -48,7 +49,17 @@ namespace ImpressoraExpressMVC.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return View();
+            List<ClienteDTO> clientes = await service.GetData();
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<ClienteDTO, ClienteViewModel>();
+            });
+
+            IMapper mapper = configuration.CreateMapper();
+            List<ClienteViewModel> dados = mapper.Map<List<ClienteViewModel>>(clientes);
+
+            return View(dados);
+
         }
     }
 }

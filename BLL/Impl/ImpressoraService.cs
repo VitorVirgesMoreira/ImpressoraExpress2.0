@@ -54,18 +54,15 @@ namespace BLL.Impl
             throw new NotImplementedException();
         }
 
-        public Task<ImpressoraDTO> GetImpressoraByID(int id)
-        {
-            throw new NotImplementedException();
-        }
-        public Task<List<ImpressoraDTO>> GetImpressoras(int page, int size)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<List<ImpressoraDTO>> GetData()
         {
             return await repository.GetData();
+        }
+
+        public async Task<List<ImpressoraDTO>> GetImpressoras()
+        {
+            return await repository.GetImpressoras();
         }
     }
 

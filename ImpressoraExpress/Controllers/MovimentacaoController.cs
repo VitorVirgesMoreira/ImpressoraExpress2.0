@@ -11,34 +11,66 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ImpressoraExpressMVC.Controllers
 {
+    
+   
     public class MovimentacaoController : BaseController
     {
-        private readonly IMovimentacaoService service;
+        private readonly ICartuchoService carService;
+        private readonly IClienteService cliService;
+        private readonly IImpressoraService impService;
+        private readonly IMovimentacaoService movService;
 
-        public MovimentacaoController(IMovimentacaoService service)
+        public MovimentacaoController(IMovimentacaoService movService,
+                                      ICartuchoService carService,
+                                      IClienteService cliService,
+                                      IImpressoraService impService)
         {
-            this.service = service;
+            this.movService = movService;
+            this.carService = carService;
+            this.cliService = cliService;
+            this.impService = impService;
         }
+
         [HttpGet]
         public async Task<IActionResult> Controlar()
         {
+            List<CartuchoDTO> cartuchos = await carService.GetCartuchos();
+            List<ClienteDTO> clientes = await cliService.GetClientes();
+            List<ImpressoraDTO> impressoras = await impService.GetImpressoras();
+
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<CartuchoDTO, CartuchoViewModel>();
+                cfg.CreateMap<ClienteDTO, ClienteViewModel>();
+                cfg.CreateMap<ImpressoraDTO, ImpressoraViewModel>();
+            });
+
+            IMapper mapper = configuration.CreateMapper();
+
+            List<CartuchoViewModel> dadosCartuchos = mapper.Map<List<CartuchoViewModel>>(cartuchos);
+            List<ClienteViewModel> dadosClientes = mapper.Map<List<ClienteViewModel>>(clientes);
+            List<ImpressoraDTO> dadosImpressoras = mapper.Map<List<ImpressoraDTO>>(impressoras);
+
+            ViewBag.Cartuchos = dadosCartuchos;
+            ViewBag.Clientes = dadosClientes;
+            ViewBag.Impressoras = dadosImpressoras;
+
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Controlar(MovimentacaoViewModel viewModel)
         {
-
+            
             var configuration = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<MovimentacaoViewModel, MovimentacaoDTO>();
             });
             IMapper mapper = configuration.CreateMapper();
             MovimentacaoDTO dto = mapper.Map<MovimentacaoDTO>(viewModel);
-
             try
             {
-                await service.Insert(dto);
+                await movService.Insert(dto);
                 return RedirectToAction("Index", "Movimentacao");
             }
             catch (Exception ex)

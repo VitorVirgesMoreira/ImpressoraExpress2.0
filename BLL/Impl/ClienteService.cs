@@ -22,6 +22,11 @@ namespace BLL.Impl
             this.repository = repository;
         }
 
+        public async Task<List<ClienteDTO>> GetClientes()
+        {
+            return await repository.GetClientes();
+        }
+
         public async Task<List<ClienteDTO>> GetData()
         {
             return await repository.GetData();
@@ -65,12 +70,12 @@ namespace BLL.Impl
 
             TimeSpan dezesseisAnosDeVida = new TimeSpan(5844, 0, 0, 0);
             TimeSpan centoEQuinzeAnosDeVida = new TimeSpan(42004, 0, 0, 0);
-            if (DateTime.Now.Subtract(dezesseisAnosDeVida).Day > cliente.DataNascimento.DayOfYear)
+            if (DateTime.Now.Subtract(dezesseisAnosDeVida).Day > cliente.DataNascimento.Day)
             {
                 base.AddError("DataNascimento", "Você deve possuir acima de 16 anos para se cadastrar!");
 
             }
-            else if (DateTime.Now.Subtract(centoEQuinzeAnosDeVida).Day > cliente.DataNascimento.DayOfYear)
+            else if (DateTime.Now.Subtract(centoEQuinzeAnosDeVida).Day > cliente.DataNascimento.Day)
             {
                 base.AddError("DataNascimento", "Você deve possuir menos de 115 anos meo, milagres acontecem.");
             }

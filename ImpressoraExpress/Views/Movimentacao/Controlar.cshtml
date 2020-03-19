@@ -1,4 +1,8 @@
-﻿@{
+﻿@model ImpressoraExpressMVC.Models.MovimentacaoViewModel
+
+
+
+@{
     ViewData["Title"] = "Controlar";
 }
 
@@ -39,7 +43,7 @@
 
 <!-- Link para redirecionar -->
 <!-- <li><a href="/Cartucho/Cadastrar"><i class="form-check"></i> Linkzinho marotão do cachorrão</a></li> -->
-<!DOCTYPE html>
+
 
 <html>
 <head>
@@ -47,13 +51,64 @@
     <title>Movimentacao</title>
 </head>
 <body>
+    @{
+        List<Common.Error> errors = new List<Common.Error>();
+        if (ViewBag.Errors != null)
+        {
+            errors = ViewBag.Errors;
+        }
+    }
     <div>
         <form method="post">
             <div class="form-group">
+                <label class="control-label col-md-2">Cliente</label>
+                <div class="col-md-10">
+                    <select class="form-control" name="ClienteID" id="ClienteID">
+                        @foreach (var item in ViewBag.Clientes)
+                        {
+                            <option value="@item.ID">@item.Nome</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Cartuchos</label>
+                <div class="col-md-10">
+                    <select class="form-control" name="CartuchosID" id="CartuchosID">
+                        @foreach (var item in ViewBag.Cartuchos)
+                        {
+                            <option value="@item.ID">@item.NomeModelo</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Impressoras</label>
+                <div class="col-md-10">
+                    <select class="form-control" name="ImpressorasID" id="ImpressorasID">
+                        @foreach (var item in ViewBag.Impressoras)
+                        {
+                            <option value="@item.ID">@item.Modelo</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label class="control-label col-md-2">Data Locacao</label>
                 <div class="col-md-10">
-                    <input class="form-control" type="date" name="dataLocacao" id="dataLocacao" />
-                    <span class="text-danger" id="erroDataLocacao" name="erroDataLocacao"></span>
+                    <input class="form-control" type="date" name="DataLocacao" id="DataLocacao" />
+                    <span class="text-danger" id="erroDataLocacao" name="erroDataLocacao">
+                        @{
+                            Common.Error erro = errors.FirstOrDefault(c => c.FieldName == "DataLocacao");
+                            if (erro != null)
+                            {
+                                <text>@erro.Message</text>
+                            }
+                        }
+                    </span>
                 </div>
             </div>
 
@@ -61,7 +116,15 @@
                 <label class="control-label col-md-2">Data Devolucao</label>
                 <div class="col-md-10">
                     <input class="form-control" type="date" name="DataDevolucao" id="DataDevolucao" />
-                    <span class="text-danger" id="erroDataDevolucao" name="erroDataDevolucao"></span>
+                    <span class="text-danger" id="erroDataDevolucao" name="erroDataDevolucao">
+                        @{
+                            erro = errors.FirstOrDefault(c => c.FieldName == "DataDevolucao");
+                            if (erro != null)
+                            {
+                                <text>@erro.Message</text>
+                            }
+                        }
+                    </span>
                 </div>
             </div>
 
@@ -69,7 +132,31 @@
                 <label class="control-label col-md-2">Quantidade Cartucho</label>
                 <div class="col-md-10">
                     <input class="form-control" type="number" min="1" max="900" name="QuantidadeCartucho" id="QuantidadeCartucho" />
-                    <span class="text-danger" id="erroQuantidadeCartucho" name="erroQuantidadeCartucho"></span>
+                    <span class="text-danger" id="erroQuantidadeCartucho" name="erroQuantidadeCartucho">
+                        @{
+                            erro = errors.FirstOrDefault(c => c.FieldName == "QuantidadeCartucho");
+                            if (erro != null)
+                            {
+                                <text>@erro.Message</text>
+                            }
+                        }
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Orçamento</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" name="ValorTotalOrcamento" id="ValorTotalOrcamento" readonly />
+                    <span class="text-danger" id="erroValorTotalOrcamento" name="erroValorTotalOrcamento">
+                        @{
+                            erro = errors.FirstOrDefault(c => c.FieldName == "ValorTotalOrcamento");
+                            if (erro != null)
+                            {
+                                <text>@erro.Message</text>
+                            }
+                        }
+                    </span>
                 </div>
             </div>
 
@@ -78,7 +165,6 @@
                     <input name="BotaoEnviar" id="BotaoEnviar" type="submit" value="Cadastrar" />
                 </div>
             </div>
-
         </form>
     </div>
 </body>
@@ -97,6 +183,7 @@
                 var dataLocacao = $("#DataLocacao").val();
                 var dataDevolucao = $("#DataDevolucao").val();
                 var quantidadeCartucho = $("#QuantidadeCartucho").val();
+                var valorOrcamento = $("#ValorTotalOrcamento").val();
 
                 var sucesso = true;
 
@@ -104,10 +191,18 @@
                     $("#erroDataLocacao").html("Data de localção deve ser informada.");
                     sucesso = false;
                 }
+                else {
+                    $("#erroDataLocacao").html("");
+                }
+
                 if (dataDevolucao == "") {
                     $("#erroDataDevolucao").html("Data de devolução deve ser informado.");
                     sucesso = false;
                 }
+                else {
+                    $("#erroDataDevolucao").html("");
+                }
+
                 if (quantidadeCartucho == "") {
                     $("#erroQuantidadeCartucho").html("Quantidade deve ser informado.");
                     sucesso = false;
@@ -120,11 +215,17 @@
                     $("#erroQuantidadeCartucho").html("");
                 }
 
+                if (valorOrcamento == "") {
+                    $("#erroValorTotalOrcamento").html("Orçamento deve ser informado.");
+                    sucesso = false;
+                }
+                else {
+
+                }
+
                 if (!sucesso) {
                     e.preventDefault();
                 }
-
-
             });
         });
     </script>

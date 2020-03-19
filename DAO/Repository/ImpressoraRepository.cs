@@ -49,5 +49,13 @@ namespace DAO.Repository
                 throw new Exception("Erro no Banco de dados, contate o administrador");
             }
         }
+
+        public async Task<List<ImpressoraDTO>> GetImpressoras()
+        {
+            using (_context)
+            {
+                return await _context.Impressoras.ToListAsync();
+            }
+        }
     }
 }

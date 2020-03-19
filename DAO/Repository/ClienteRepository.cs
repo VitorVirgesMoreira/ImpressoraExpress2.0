@@ -33,6 +33,14 @@ namespace DAO.Repository
             }
         }
 
+        public async Task<List<ClienteDTO>> GetClientes()
+        {
+            using (_context)
+            {
+                return await _context.Clientes.ToListAsync();
+            }
+        }
+
         public async Task<List<ClienteDTO>> GetData()
         {
             try

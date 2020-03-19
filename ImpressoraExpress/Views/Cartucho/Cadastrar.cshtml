@@ -39,15 +39,10 @@
 </body>
 </html>
 
-
-<!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Cadastrar Cartucho</title>
-
-
 </head>
 <body>
 
@@ -59,64 +54,62 @@
                 errors = ViewBag.Errors;
             }
         }
-        <form method="post">
-            <div class="form-group">
-                <label class="control-label col-md-2">Nome Modelo</label>
-                <div class="col-md-10">
-                    <input class="form-control" type="text" name="NomeModelo" id="NomeModelo" />
-                    <span class="text-danger" id="erroNomeModelo" name="erroNomeModelo">
-                        @{
-                            Common.Error erro = errors.FirstOrDefault(c => c.FieldName == "NomeModelo");
-                            if (erro != null)
-                            {
-                                <text>@erro.Message</text>
+        <div>
+            <form method="post">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Nome Modelo</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" name="NomeModelo" id="NomeModelo" />
+                        <span class="text-danger" id="erroNomeModelo" name="erroNomeModelo">
+                            @{
+                                Common.Error erro = errors.FirstOrDefault(c => c.FieldName == "NomeModelo");
+                                if (erro != null)
+                                {
+                                    <text>@erro.Message</text>
+                                }
                             }
-                        }
-                    </span>
+                        </span>
+                    </div>
                 </div>
-            </div>
 
-            @{
-                string[] cor = Enum.GetNames(typeof(DTO.Enum.Cor));
-            }
-
-
-
-            <div class="form-group">
-                <label class="control-label col-md-2">Cor</label>
-                <div class="col-md-10">
-                    <select class="form-control" name="Cor" id="Cor">
-                        @for (int i = 0; i < cor.Length; i++)
-                        {
-                            <option value="@i">@cor[i]</option>
-                        }
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-2">Valor de Unidade</label>
-                <div class="col-md-10">
-                    <input class="money" type="text" name="ValorUnitario" id="ValorUnidade" />
-                    <span class="text-danger" id="erroValorUnidade" name="erroValorUnidade">
-                        @{
-                            erro = errors.FirstOrDefault(c => c.FieldName == "ValorUnidade");
-                            if (erro != null)
+                @{
+                    string[] cor = Enum.GetNames(typeof(DTO.Enum.Cor));
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2">Cor</label>
+                    <div class="col-md-10">
+                        <select class="form-control" name="Cor" id="Cor">
+                            @for (int i = 0; i < cor.Length; i++)
                             {
-                                <text>@erro.Message</text>
+                                <option value="@i">@cor[i]</option>
                             }
-                        }
-                    </span>
+                        </select>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <div class="col-md-10">
-                    <input name="BotaoEnviar" id="BotaoEnviar" type="submit" value="Cadastrar" />
+                <div class="form-group">
+                    <label class="control-label col-md-2">Valor de Unidade</label>
+                    <div class="col-md-10">
+                        <input class="money" type="text" name="ValorUnitario" id="ValorUnidade" />
+                        <span class="text-danger" id="erroValorUnidade" name="erroValorUnidade">
+                            @{
+                                erro = errors.FirstOrDefault(c => c.FieldName == "ValorUnidade");
+                                if (erro != null)
+                                {
+                                    <text>@erro.Message</text>
+                                }
+                            }
+                        </span>
+                    </div>
                 </div>
-            </div>
 
-        </form>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input name="BotaoEnviar" id="BotaoEnviar" type="submit" value="Cadastrar" />
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 

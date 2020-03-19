@@ -11,5 +11,7 @@ namespace BLL.Interfaces
         Task Insert(ClienteDTO cliente);
         Task Update(ClienteDTO cliente);
         Task<List<ClienteDTO>> GetData();
+        Task<List<ClienteDTO>> GetClientes();
+
     }
 }

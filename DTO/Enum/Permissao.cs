@@ -6,7 +6,6 @@ namespace DTO.Enum
 {
     public enum Permissao
     {
-        Cliente = 0,
-        Administrador = 1
+        Administrador = 0
     }
 }

@@ -21,11 +21,6 @@ namespace BLL.Impl
             this.repository = repository;
         }
 
-        public async Task<List<CartuchoDTO>> GetData()
-        {
-            return await repository.GetData();
-        }
-
         public async Task Insert(CartuchoDTO cartucho)
         {
             List<Error> errors = new List<Error>();
@@ -54,6 +49,14 @@ namespace BLL.Impl
             throw new NotImplementedException();
         }
 
+        public async Task<List<CartuchoDTO>> GetCartuchos()
+        {
+            return await repository.GetCartuchos();
+        }
 
+        public async Task<List<CartuchoDTO>> GetData()
+        {
+            return await repository.GetData();
+        }
     }
 }

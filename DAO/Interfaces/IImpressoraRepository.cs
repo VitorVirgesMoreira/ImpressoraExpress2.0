@@ -10,6 +10,8 @@ namespace DAO.Interfaces
     {
         Task Create(ImpressoraDTO impressora);
         Task<List<ImpressoraDTO>> GetData();
+        Task<List<ImpressoraDTO>> GetImpressoras();
+
 
     }
 }

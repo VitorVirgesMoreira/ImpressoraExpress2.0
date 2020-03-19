@@ -1,0 +1,40 @@
+﻿@model List<ImpressoraExpressMVC.Models.CartuchoViewModel>
+
+
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Clientes Cadastrados</title>
+</head>
+<body>
+    <h2>Clientes Cadastrados</h2>
+    <div>
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Nome Modelo</th>
+                <th>Cor Cartucho</th>
+                <th>Valor</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.NomeModelo</td>
+                    <td>@item.CorCartucho</td>
+                    <td>@item.ValorUnitario.ToString("C2")</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</body>
+</html>

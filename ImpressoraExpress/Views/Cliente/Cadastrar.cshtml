@@ -39,20 +39,34 @@
 </html>
 
 
-<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Cadastrar Cliente</title>
 </head>
 <body>
+    @{
+        List<Common.Error> errors = new List<Common.Error>();
+        if (ViewBag.Errors != null)
+        {
+            errors = ViewBag.Errors;
+        }
+    }
     <div>
         <form method="post">
             <div class="form-group">
                 <label class="control-label col-md-2">Nome</label>
                 <div class="col-md-10">
                     <input class="form-control" type="text" name="Nome" id="Nome" />
-                    <span class="text-danger" id="erroNome" name="erroNome"></span>
+                    <span class="text-danger" id="erroNome" name="erroNome">
+                        @{
+                            Common.Error erro = errors.FirstOrDefault(c => c.FieldName == "Nome");
+                            if (erro != null)
+                            {
+                                <text>@erro.Message</text>
+                            }
+                        }
+                    </span>
                 </div>
             </div>
 
@@ -60,7 +74,15 @@
                 <label class="control-label col-md-2">CPF</label>
                 <div class="col-md-10">
                     <input class="form-control" type="text" name="CPF" id="CPF" />
-                    <span class="text-danger" id="erroCPF" name="erroCPF"></span>
+                    <span class="text-danger" id="erroCPF" name="erroCPF">
+                        @{
+                            erro = errors.FirstOrDefault(c => c.FieldName == "CPF");
+                            if (erro != null)
+                            {
+                                <text>@erro.Message</text>
+                            }
+                        }
+                    </span>
                 </div>
             </div>
 
@@ -68,7 +90,15 @@
                 <label class="control-label col-md-2">Email</label>
                 <div class="col-md-10">
                     <input class="form-control" type="text" name="Email" id="Email" />
-                    <span class="text-danger" id="erroEmail" name="erroEmail"></span>
+                    <span class="text-danger" id="erroEmail" name="erroEmail">
+                        @{
+                            erro = errors.FirstOrDefault(c => c.FieldName == "Email");
+                            if (erro != null)
+                            {
+                                <text>@erro.Message</text>
+                            }
+                        }
+                    </span>
                 </div>
             </div>
 
@@ -76,7 +106,15 @@
                 <label class="control-label col-md-2">Data de Nascimento</label>
                 <div class="col-md-10">
                     <input class="form-control" type="date" name="DataNascimento" id="DataNascimento" />
-                    <span class="text-danger" id="erroDataNascimento" name="erroDataNascimento"></span>
+                    <span class="text-danger" id="erroDataNascimento" name="erroDataNascimento">
+                        @{
+                            erro = errors.FirstOrDefault(c => c.FieldName == "DataNascimento");
+                            if (erro != null)
+                            {
+                                <text>@erro.Message</text>
+                            }
+                        }
+                    </span>
                 </div>
             </div>
 

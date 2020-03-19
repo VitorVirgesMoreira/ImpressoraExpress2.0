@@ -10,6 +10,7 @@ namespace DAO.Interfaces
     {
         Task Create(ClienteDTO cliente);
         Task<List<ClienteDTO>> GetData();
-      
+        Task<List<ClienteDTO>> GetClientes();
+
     }
 }

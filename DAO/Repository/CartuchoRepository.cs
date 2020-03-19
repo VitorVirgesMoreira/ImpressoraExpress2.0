@@ -12,7 +12,7 @@ namespace DAO.Repository
     public class CartuchoRepository : ICartuchoRepository
     {
         private ExpressDbContext _context;
-        public CartuchoRepository(ExpressDbContext context)
+        public CartuchoRepository(ExpressDbContext context) 
         {
             _context = context;
         }
@@ -30,6 +30,14 @@ namespace DAO.Repository
                     throw new Exception("Nome do modelo já existe");
                 }
                 throw new Exception("Erro no banco de dados");
+            }
+        }
+
+        public async Task<List<CartuchoDTO>> GetCartuchos()
+        {
+            using (_context)
+            {
+                return await _context.Cartuchos.ToListAsync();
             }
         }
 
