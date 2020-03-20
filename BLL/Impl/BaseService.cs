@@ -16,7 +16,7 @@ namespace BLL.Impl
         protected void CheckErrors()
         {
             //APÓS VALIDAR TODOS OS CAMPOS, VERIFIQUE SE POSSUIMOS ERROS
-            if (errors.Count > 0)
+            if (errors.Count != 0)
             {
                 throw new CarlaoException(errors);
             }

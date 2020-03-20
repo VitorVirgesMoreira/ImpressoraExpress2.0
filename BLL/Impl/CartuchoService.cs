@@ -33,12 +33,11 @@ namespace BLL.Impl
                 base.AddError("NomeModelo", "O nome do modelo deve conter entre 5 e 150 caracteres");
             }
 
-
             if (cartucho.ValorUnitario < 30)
             {
                 base.AddError("ValorUnitario", "Valor de unidade deve ser maior que R$30,00.");
             }
-            base.CheckErrors();
+            CheckErrors();
 
             await repository.Create(cartucho);
 

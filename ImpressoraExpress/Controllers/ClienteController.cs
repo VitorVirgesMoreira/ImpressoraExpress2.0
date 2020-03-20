@@ -21,7 +21,7 @@ namespace ImpressoraExpressMVC.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Cadastrar()
+        public IActionResult Cadastrar()
         {
             return View();
         }

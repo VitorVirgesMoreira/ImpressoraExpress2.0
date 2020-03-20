@@ -11,8 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ImpressoraExpressMVC.Controllers
 {
-    
-   
+
+
     public class MovimentacaoController : BaseController
     {
         private readonly ICartuchoService carService;
@@ -34,6 +34,7 @@ namespace ImpressoraExpressMVC.Controllers
         [HttpGet]
         public async Task<IActionResult> Controlar()
         {
+
             List<CartuchoDTO> cartuchos = await carService.GetCartuchos();
             List<ClienteDTO> clientes = await cliService.GetClientes();
             List<ImpressoraDTO> impressoras = await impService.GetImpressoras();
@@ -54,6 +55,7 @@ namespace ImpressoraExpressMVC.Controllers
             ViewBag.Cartuchos = dadosCartuchos;
             ViewBag.Clientes = dadosClientes;
             ViewBag.Impressoras = dadosImpressoras;
+
 
             return View();
         }
@@ -83,5 +85,32 @@ namespace ImpressoraExpressMVC.Controllers
         {
             return View();
         }
-    }
+
+
+        [HttpPost]
+        public async Task<IActionResult> OrcamentoTotal(MovimentacaoViewModel viewModel, double valorCartuchos, double valorImpressora, double valorTotalOrcamento)
+        {
+            foreach (var item in ViewBag.Cartuchos)
+            {
+                if (item.ID == viewModel.CartuchoID)
+                {
+                    valorCartuchos = item.ValorUnitario * viewModel.QuantidadeCartucho;
+                    break;
+                }
+            }
+
+            foreach (var item in ViewBag.Impressoras)
+            {
+                if (item.ID == viewModel.ImpressoraID)
+                {
+                    valorImpressora = item.Valor;
+                    break;
+                }
+            }
+            valorTotalOrcamento = valorCartuchos + valorImpressora;
+
+
+            return View(valorTotalOrcamento);
+        }
+    }   
 }

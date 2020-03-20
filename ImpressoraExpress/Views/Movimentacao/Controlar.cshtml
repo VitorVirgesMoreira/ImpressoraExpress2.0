@@ -147,7 +147,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">Orçamento</label>
                 <div class="col-md-10">
-                    <input class="form-control" type="text" name="ValorTotalOrcamento" id="ValorTotalOrcamento" readonly />
+                    <input class="form-control" type="text" name="ValorTotalOrcamento" id="ValorTotalOrcamento" />
                     <span class="text-danger" id="erroValorTotalOrcamento" name="erroValorTotalOrcamento">
                         @{
                             erro = errors.FirstOrDefault(c => c.FieldName == "ValorTotalOrcamento");
@@ -176,7 +176,7 @@
 
         $(document).ready(function () {
 
-            debugger
+            
 
             $("#BotaoEnviar").click(function (e) {
 
@@ -220,13 +220,32 @@
                     sucesso = false;
                 }
                 else {
-
+                    $("#erroValorTotalOrcamento").html("");
                 }
 
                 if (!sucesso) {
                     e.preventDefault();
                 }
+
             });
+
+            if ($("#QuantidadeCartucho").val() >= 1) {
+
+                $.ajax({
+                    url: "/Movimentacao/OrcamentoTotal/",
+                    data: { valorOrcamento: $("#ValorTotalOrcamento").val() },
+                    type: "post",
+                    dataType: "json",
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("kkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+                    },
+                    success: function (data) {
+                        $("#ValorTotalOrcamento").val(data.valorOrcamento);
+
+                    }
+
+                });
+            }
         });
     </script>
 
