@@ -75,7 +75,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">Cartuchos</label>
                 <div class="col-md-10">
-                    <select class="form-control" name="CartuchosID" id="CartuchosID">
+                    <select class="form-control" name="CartuchoID" id="CartuchoID">
                         @foreach (var item in ViewBag.Cartuchos)
                         {
                             <option value="@item.ID">@item.NomeModelo</option>
@@ -87,7 +87,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">Impressoras</label>
                 <div class="col-md-10">
-                    <select class="form-control" name="ImpressorasID" id="ImpressorasID">
+                    <select class="form-control" name="ImpressoraID" id="ImpressoraID">
                         @foreach (var item in ViewBag.Impressoras)
                         {
                             <option value="@item.ID">@item.Modelo</option>
@@ -176,8 +176,6 @@
 
         $(document).ready(function () {
 
-            
-
             $("#BotaoEnviar").click(function (e) {
 
                 var dataLocacao = $("#DataLocacao").val();
@@ -229,23 +227,23 @@
 
             });
 
-            if ($("#QuantidadeCartucho").val() >= 1) {
+            $("#QuantidadeCartucho").change(function () {
+                debugger
 
                 $.ajax({
-                    url: "/Movimentacao/OrcamentoTotal/",
-                    data: { valorOrcamento: $("#ValorTotalOrcamento").val() },
-                    type: "post",
-                    dataType: "json",
+                    url: "/Movimentacao/CalcularOrcamento?idCartucho=" + $("#CartuchoID").val() +
+                        "&idImpressora=" + $("#ImpressoraID").val() +
+                        "&qtdCartucho=" + $("#QuantidadeCartucho").val(),
+                    type: "get",
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         alert("kkkkkkkkkkkkkkkkkkkkkkkkkkkk");
                     },
                     success: function (data) {
-                        $("#ValorTotalOrcamento").val(data.valorOrcamento);
-
+                        $("#ValorTotalOrcamento").val(data);
                     }
-
                 });
-            }
+            });
+
         });
     </script>
 

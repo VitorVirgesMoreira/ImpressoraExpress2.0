@@ -87,30 +87,12 @@ namespace ImpressoraExpressMVC.Controllers
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> OrcamentoTotal(MovimentacaoViewModel viewModel, double valorCartuchos, double valorImpressora, double valorTotalOrcamento)
+        [HttpGet]
+        public string CalcularOrcamento(int idCartucho, int idImpressora, int qtdCartucho)
         {
-            foreach (var item in ViewBag.Cartuchos)
-            {
-                if (item.ID == viewModel.CartuchoID)
-                {
-                    valorCartuchos = item.ValorUnitario * viewModel.QuantidadeCartucho;
-                    break;
-                }
-            }
-
-            foreach (var item in ViewBag.Impressoras)
-            {
-                if (item.ID == viewModel.ImpressoraID)
-                {
-                    valorImpressora = item.Valor;
-                    break;
-                }
-            }
-            valorTotalOrcamento = valorCartuchos + valorImpressora;
 
 
-            return View(valorTotalOrcamento);
+            return "aaa";
         }
     }   
 }
