@@ -15,29 +15,29 @@ namespace ImpressoraExpressMVC.Controllers
 
     public class MovimentacaoController : BaseController
     {
-        private readonly ICartuchoService carService;
-        private readonly IClienteService cliService;
-        private readonly IImpressoraService impService;
-        private readonly IMovimentacaoService movService;
+        private readonly ICartuchoService _carService;
+        private readonly IClienteService _cliService;
+        private readonly IImpressoraService _impService;
+        private readonly IMovimentacaoService _movService;
 
         public MovimentacaoController(IMovimentacaoService movService,
                                       ICartuchoService carService,
                                       IClienteService cliService,
                                       IImpressoraService impService)
         {
-            this.movService = movService;
-            this.carService = carService;
-            this.cliService = cliService;
-            this.impService = impService;
+            this._movService = movService;
+            this._carService = carService;
+            this._cliService = cliService;
+            this._impService = impService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Controlar()
         {
 
-            List<CartuchoDTO> cartuchos = await carService.GetCartuchos();
-            List<ClienteDTO> clientes = await cliService.GetClientes();
-            List<ImpressoraDTO> impressoras = await impService.GetImpressoras();
+            List<CartuchoDTO> cartuchos = await _carService.GetCartuchos();
+            List<ClienteDTO> clientes = await _cliService.GetClientes();
+            List<ImpressoraDTO> impressoras = await _impService.GetImpressoras();
 
             var configuration = new MapperConfiguration(cfg =>
             {
@@ -72,7 +72,7 @@ namespace ImpressoraExpressMVC.Controllers
             MovimentacaoDTO dto = mapper.Map<MovimentacaoDTO>(viewModel);
             try
             {
-                await movService.Insert(dto);
+                await _movService.Insert(dto);
                 return RedirectToAction("Index", "Movimentacao");
             }
             catch (Exception ex)
@@ -90,9 +90,17 @@ namespace ImpressoraExpressMVC.Controllers
         [HttpGet]
         public string CalcularOrcamento(int idCartucho, int idImpressora, int qtdCartucho)
         {
+            double precoCartucho =
+            _carService.GetData().Result.FirstOrDefault(c => c.ID == idCartucho).ValorUnitario;
 
+            double valorTotalCartuchos = precoCartucho * qtdCartucho;
 
-            return "aaa";
+            double precoImpressora =
+                _impService.GetData().Result.FirstOrDefault(c => c.ID == idImpressora).Valor;
+
+            double valorOrcamento = valorTotalCartuchos + precoImpressora;
+
+            return valorOrcamento.ToString("C2");
         }
     }   
 }

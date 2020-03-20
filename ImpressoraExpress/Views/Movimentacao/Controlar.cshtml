@@ -147,7 +147,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">Orçamento</label>
                 <div class="col-md-10">
-                    <input class="form-control" type="text" name="ValorTotalOrcamento" id="ValorTotalOrcamento" />
+                    <input class="form-control" type="text" name="ValorTotalOrcamento" id="ValorTotalOrcamento" readonly/>
                     <span class="text-danger" id="erroValorTotalOrcamento" name="erroValorTotalOrcamento">
                         @{
                             erro = errors.FirstOrDefault(c => c.FieldName == "ValorTotalOrcamento");
