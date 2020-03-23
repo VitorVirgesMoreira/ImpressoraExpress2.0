@@ -10,6 +10,7 @@
     <title>Impressora Express</title>
     <link rel="Sidebar.css" href="css." />
 </head>
+
 <body>
     <div>
         <form method="post">
@@ -75,7 +76,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Cor</label>
                     <div class="col-md-10">
-                        <select class="form-control" name="Cor" id="Cor">
+                        <select class="form-control" name="CorCartucho" id="CorCartucho">
                             @for (int i = 0; i < cor.Length; i++)
                             {
                                 <option value="@i">@cor[i]</option>
@@ -124,8 +125,6 @@
 
             $("#BotaoEnviar").click(function (e) {
 
-
-
                 var nomeModelo = $("#NomeModelo").val();
                 var valorUnidade = $("#ValorUnidade").val();
 
@@ -158,10 +157,7 @@
                 if (!sucesso) {
                     e.preventDefault();
                 }
-
-
             });
-
         });
     </script>
 
