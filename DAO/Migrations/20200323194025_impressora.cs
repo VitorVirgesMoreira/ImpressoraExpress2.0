@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAO.Migrations
 {
-    public partial class InitialCommit : Migration
+    public partial class impressora : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -81,8 +81,7 @@ namespace DAO.Migrations
                     ClientesID = table.Column<int>(nullable: true),
                     CartuchoID = table.Column<int>(nullable: false),
                     CartuchosID = table.Column<int>(nullable: true),
-                    DataLocacao = table.Column<DateTime>(nullable: false),
-                    DataDevolucao = table.Column<DateTime>(nullable: true),
+                    DataVenda = table.Column<DateTime>(nullable: false),
                     QuantidadeCartucho = table.Column<int>(nullable: false),
                     ValorTotalOrcamento = table.Column<double>(nullable: false)
                 },

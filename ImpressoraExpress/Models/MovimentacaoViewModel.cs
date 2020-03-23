@@ -11,8 +11,7 @@ namespace ImpressoraExpressMVC.Models
         public int ImpressoraID { get; set; }
         public int ClienteID { get; set; }
         public int CartuchoID { get; set; }
-        public DateTime DataLocacao { get; set; }
-        public DateTime? DataDevolucao { get; set; }
+        public DateTime DataVenda { get; set; }
         public int QuantidadeCartucho { get; set; }
         public double ValorTotalOrcamento { get; set; }
     }

@@ -79,9 +79,18 @@ namespace ImpressoraExpressMVC.Controllers
             return View();
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            List<MovimentacaoDTO> movimentacoes = await _movimentacaoService.GetData();
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<MovimentacaoDTO, MovimentacaoViewModel>();
+            });
+
+            IMapper mapper = configuration.CreateMapper();
+            List<MovimentacaoViewModel> dados = mapper.Map<List<MovimentacaoViewModel>>(movimentacoes);
+
+            return View(dados);
         }
 
         [HttpGet]
@@ -97,7 +106,7 @@ namespace ImpressoraExpressMVC.Controllers
 
             double valorOrcamento = valorTotalCartuchos + precoImpressora;
 
-            return valorOrcamento.ToString("C2");
+            return valorOrcamento.ToString("C2").Replace("R$", "");
         }
     }   
 }

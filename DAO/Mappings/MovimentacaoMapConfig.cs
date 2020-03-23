@@ -12,8 +12,7 @@ namespace DAO.Mappings
         public void Configure(EntityTypeBuilder<MovimentacaoDTO> builder)
         {
             builder.ToTable("MOVIMENTACAO");
-            builder.Property(c => c.DataLocacao).IsRequired().HasColumnType("DateTime2");
-            builder.Property(c => c.DataDevolucao).HasColumnType("DateTime");
+            builder.Property(c => c.DataVenda).IsRequired().HasColumnType("DateTime2");
         }
     }
 }

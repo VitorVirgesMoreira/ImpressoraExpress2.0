@@ -4,7 +4,7 @@
     ViewData["Title"] = "Movimentacao";
 }
 
-<h1>Locação de Impressora</h1>
+<h1>Venda de Impressora</h1>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -95,28 +95,12 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-md-2">Data Locacao</label>
+                <label class="control-label col-md-2">Data de Venda</label>
                 <div class="col-md-10">
-                    <input class="form-control" type="date" name="DataLocacao" id="DataLocacao" />
-                    <span class="text-danger" id="erroDataLocacao" name="erroDataLocacao">
+                    <input class="form-control" type="date" name="DataVenda" id="DataVenda" />
+                    <span class="text-danger" id="erroDataVenda" name="erroDataVenda">
                         @{
-                            Common.Error erro = errors.FirstOrDefault(c => c.FieldName == "DataLocacao");
-                            if (erro != null)
-                            {
-                                <text>@erro.Message</text>
-                            }
-                        }
-                    </span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-2">Data Devolucao</label>
-                <div class="col-md-10">
-                    <input class="form-control" type="date" name="DataDevolucao" id="DataDevolucao" />
-                    <span class="text-danger" id="erroDataDevolucao" name="erroDataDevolucao">
-                        @{
-                            erro = errors.FirstOrDefault(c => c.FieldName == "DataDevolucao");
+                            Common.Error erro = errors.FirstOrDefault(c => c.FieldName == "DataVenda");
                             if (erro != null)
                             {
                                 <text>@erro.Message</text>
@@ -145,7 +129,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">Orçamento</label>
                 <div class="col-md-10">
-                    <input class="form-control" type="text" name="ValorTotalOrcamento" id="ValorTotalOrcamento" readonly/>
+                    <input class="money" type="text" name="ValorTotalOrcamento" id="ValorTotalOrcamento" />
                     <span class="text-danger" id="erroValorTotalOrcamento" name="erroValorTotalOrcamento">
                         @{
                             erro = errors.FirstOrDefault(c => c.FieldName == "ValorTotalOrcamento");
@@ -172,31 +156,24 @@
 
     <script type="text/javascript">
 
+        $('.money').mask("#.##0,00", { reverse: true });
+
         $(document).ready(function () {
 
             $("#BotaoEnviar").click(function (e) {
 
-                var dataLocacao = $("#DataLocacao").val();
-                var dataDevolucao = $("#DataDevolucao").val();
+                var dataLocacao = $("#DataVenda").val();
                 var quantidadeCartucho = $("#QuantidadeCartucho").val();
-                var valorOrcamento = $("#ValorTotalOrcamento").val();
+                var valorTotalOrcamento = $("#ValorTotalOrcamento").val();
 
                 var sucesso = true;
 
                 if (dataLocacao == "") {
-                    $("#erroDataLocacao").html("Data de localção deve ser informada.");
+                    $("#erroDataVenda").html("Data de venda deve ser informada.");
                     sucesso = false;
                 }
                 else {
-                    $("#erroDataLocacao").html("");
-                }
-
-                if (dataDevolucao == "") {
-                    $("#erroDataDevolucao").html("Data de devolução deve ser informado.");
-                    sucesso = false;
-                }
-                else {
-                    $("#erroDataDevolucao").html("");
+                    $("#erroDataVenda").html("");
                 }
 
                 if (quantidadeCartucho == "") {
@@ -211,7 +188,7 @@
                     $("#erroQuantidadeCartucho").html("");
                 }
 
-                if (valorOrcamento == "") {
+                if (valorTotalOrcamento == "") {
                     $("#erroValorTotalOrcamento").html("Orçamento deve ser informado.");
                     sucesso = false;
                 }

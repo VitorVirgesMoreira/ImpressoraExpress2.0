@@ -104,10 +104,7 @@ namespace DAO.Migrations
                     b.Property<int?>("ClientesID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DataDevolucao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DataLocacao")
+                    b.Property<DateTime>("DataVenda")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ImpressoraID")

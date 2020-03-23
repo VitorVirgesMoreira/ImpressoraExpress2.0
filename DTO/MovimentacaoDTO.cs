@@ -13,8 +13,7 @@ namespace DTO
         public virtual ClienteDTO Clientes{ get; set; }
         public int CartuchoID { get; set; }
         public virtual CartuchoDTO Cartuchos{ get; set; }
-        public DateTime DataLocacao { get; set; }
-        public DateTime? DataDevolucao { get; set; }
+        public DateTime DataVenda { get; set; }
         public int QuantidadeCartucho { get; set; }
         public double ValorTotalOrcamento { get; set; }
     }

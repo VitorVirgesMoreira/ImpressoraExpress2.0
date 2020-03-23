@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAO.Migrations
 {
     [DbContext(typeof(ExpressDbContext))]
-    [Migration("20200316195416_KKKK")]
-    partial class KKKK
+    [Migration("20200323194025_impressora")]
+    partial class impressora
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -106,10 +106,7 @@ namespace DAO.Migrations
                     b.Property<int?>("ClientesID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DataDevolucao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DataLocacao")
+                    b.Property<DateTime>("DataVenda")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ImpressoraID")

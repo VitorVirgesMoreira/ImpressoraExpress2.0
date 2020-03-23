@@ -26,14 +26,14 @@ namespace BLL.Impl
         public async Task Insert(MovimentacaoDTO movimentacao)
         {
             List<string> errors = new List<string>();
-            if (movimentacao.DataLocacao == null)
+            if (movimentacao.DataVenda == null)
             {
-                base.AddError("DataLocacao","Locação deve ser informada");
+                base.AddError("DataVenda", "Data de Locação deve ser informada");
             }
-
-            if (movimentacao.DataDevolucao < DateTime.Now)
+            else if (movimentacao.DataVenda > DateTime.Now)
             {
-                base.AddError("DataDevolucao", "Cliente não pode alugar pra ontem.");
+                base.AddError("DataVenda", "Data de Locação não pode ser depois de hoje");
+
             }
 
             if (movimentacao.QuantidadeCartucho <= 0)
