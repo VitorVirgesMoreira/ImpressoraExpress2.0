@@ -11,18 +11,18 @@
 
 .sidebar {
     position: fixed;
-    left: -250px;
-    width: 250px;
-    height: 100%;
+    /*250px*/left: 25%; 
+    /*250px*/width: 25%;
+    /*100px*/height: 175%;
     background: #042331;
     transition: all .5s ease;
 }
 
     .sidebar header {
-        font-size: 22px;
+        /*22px*/ font-size: 2.2%;
         color: white;
         text-align: center;
-        line-height: 70px;
+        /*70px*/ line-height: 7%;
         background: #063146;
         user-select: none;
     }
@@ -31,10 +31,10 @@
         display: block;
         height: 100%;
         width: 100%;
-        line-height: 65px;
-        font-size: 20px;
+        /*65px*/line-height: 6.5%;
+        /*20px*/font-size: 2%;
         color: white;
-        padding-left: 40px;
+        /*40px*/padding-left: 4%;
         box-sizing: border-box;
         border-top: 1px solid rgba(255,255,255,.1);
         border-bottom: 1px solid black;
@@ -42,11 +42,11 @@
     }
 
 ul li:hover a {
-    padding-left: 50px;
+    /*50px*/padding-left: 5%;
 }
 
 .sidebar ul a i {
-    margin-right: 16px;
+    /*16px*/margin-right: 1.6%;
 }
 
 #check {
@@ -57,25 +57,25 @@ label #btn, label #cancel {
     position: absolute;
     cursor: pointer;
     background: #808080;
-    border-radius: 3px;
+    /*3px*/border-radius: 0.3%;
 }
 
 label #btn {
-    left: 40px;
-    top: 25px;
-    font-size: 35px;
+    /*40px*/ left: 4%;
+    /*25px*/ top: 2.5%;
+    /*35px*/ font-size: 3.5%;
     color: white;
-    padding: 3px 6px;
+    /*3px 6px*/ padding: 0.3% 0.6%;
     transition: all .5s;
 }
 
 label #cancel {
     z-index: 1111;
-    left: -195px;
-    top: 17px;
-    font-size: 30px;
+    /*-195px*/ left: -19.5%;
+    /*17px*/ top: 1.7%;
+    /*30px*/ font-size: 3%;
     color: black;
-    padding: 2px 6px;
+    /*2px 6px*/padding: 0.2% 0.6%;
     transition: all .5s ease;
 }
 
@@ -84,17 +84,17 @@ label #cancel {
 }
 
 #check:checked ~ label #btn {
-    left: 250px;
+    /*250px*/ left: 25%;
     opacity: 0;
     pointer-events: none;
 }
 
 #check:checked ~ label #cancel {
-    left: 195px;
+    /*195px*/ left: 19.5%;
 }
 
 #check:checked ~ section {
-    margin-left: 250px;
+    /*250px*/ margin-left: 25%;
 }
 
 
