@@ -17,11 +17,11 @@ namespace BLL.Impl
     public class ImpressoraService : BaseService, IImpressoraService
     {
         private readonly IImpressoraRepository repository;
-
         public ImpressoraService(IImpressoraRepository repository)
         {
             this.repository = repository;
         }
+
         public async Task Insert(ImpressoraDTO impressora)
         {
             List<Error> errors = new List<Error>();
@@ -44,8 +44,8 @@ namespace BLL.Impl
             {
                 base.AddError("Valor", "Valor da impressora deve ser maior que R$150,00");
             }
+
             base.CheckErrors();
-            
             await repository.Create(impressora);
         }
 
@@ -54,16 +54,9 @@ namespace BLL.Impl
             throw new NotImplementedException();
         }
 
-
         public async Task<List<ImpressoraDTO>> GetData()
         {
             return await repository.GetData();
         }
-
-        public async Task<List<ImpressoraDTO>> GetImpressoras()
-        {
-            return await repository.GetImpressoras();
-        }
     }
-
 }          

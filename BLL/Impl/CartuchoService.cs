@@ -14,8 +14,6 @@ namespace BLL.Impl
     public class CartuchoService : BaseService, ICartuchoService
     {
         private readonly ICartuchoRepository repository;
-
-        //Colocar Validações nesse service enos abaixos
         public CartuchoService(ICartuchoRepository repository)
         {
             this.repository = repository;
@@ -33,12 +31,11 @@ namespace BLL.Impl
                 base.AddError("NomeModelo", "O nome do modelo deve conter entre 5 e 150 caracteres");
             }
 
-
             if (cartucho.ValorUnitario < 30)
             {
                 base.AddError("ValorUnitario", "Valor de unidade deve ser maior que R$30,00.");
             }
-            base.CheckErrors();
+            CheckErrors();
 
             await repository.Create(cartucho);
 
@@ -47,11 +44,6 @@ namespace BLL.Impl
         public Task Update(CartuchoDTO cartucho)
         {
             throw new NotImplementedException();
-        }
-
-        public async Task<List<CartuchoDTO>> GetCartuchos()
-        {
-            return await repository.GetCartuchos();
         }
 
         public async Task<List<CartuchoDTO>> GetData()

@@ -10,6 +10,5 @@ namespace DAO.Interfaces
     {
         Task Create(MovimentacaoDTO movimentacao);
         Task<List<MovimentacaoDTO>> GetData();
-
     }
 }

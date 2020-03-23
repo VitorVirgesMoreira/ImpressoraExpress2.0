@@ -16,15 +16,9 @@ namespace BLL.Impl
     public class ClienteService : BaseService, IClienteService
     {
         private readonly IClienteRepository repository;
-
         public ClienteService(IClienteRepository repository)
         {
             this.repository = repository;
-        }
-
-        public async Task<List<ClienteDTO>> GetClientes()
-        {
-            return await repository.GetClientes();
         }
 
         public async Task<List<ClienteDTO>> GetData()
@@ -79,10 +73,8 @@ namespace BLL.Impl
             {
                 base.AddError("DataNascimento", "Você deve possuir menos de 115 anos meo, milagres acontecem.");
             }
-            
 
             base.CheckErrors();
-
             await repository.Create(cliente);
         }
 

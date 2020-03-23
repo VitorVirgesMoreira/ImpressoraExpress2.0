@@ -11,7 +11,6 @@ namespace DAO.Mappings
     {
         public void Configure(EntityTypeBuilder<UsuarioDTO> builder)
         {
-
             builder.ToTable("USUARIO");
             builder.Property(c => c.Senha).HasMaxLength(70).IsRequired();
             builder.Property(c => c.Email).HasMaxLength(100);

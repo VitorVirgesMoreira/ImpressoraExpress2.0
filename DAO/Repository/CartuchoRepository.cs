@@ -16,6 +16,7 @@ namespace DAO.Repository
         {
             _context = context;
         }
+
         public async Task Create(CartuchoDTO cartucho)
         {
             try
@@ -30,14 +31,6 @@ namespace DAO.Repository
                     throw new Exception("Nome do modelo já existe");
                 }
                 throw new Exception("Erro no banco de dados");
-            }
-        }
-
-        public async Task<List<CartuchoDTO>> GetCartuchos()
-        {
-            using (_context)
-            {
-                return await _context.Cartuchos.ToListAsync();
             }
         }
 

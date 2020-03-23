@@ -42,7 +42,6 @@ namespace BLL.Validator
                 errors.Add(new Error() { FieldName = "Complemento", Message = "Complemento deve ser informado" });
             }
                 
-            //FAZER DE TODOS OS CAMPOS
             return errors;
         }
     }

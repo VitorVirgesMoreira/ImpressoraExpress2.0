@@ -1,12 +1,10 @@
 ﻿@model ImpressoraExpressMVC.Models.MovimentacaoViewModel
 
-
-
 @{
-    ViewData["Title"] = "Controlar";
+    ViewData["Title"] = "Movimentacao";
 }
 
-<h1>Controlar</h1>
+<h1>Locação de Impressora</h1>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -75,7 +73,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">Cartuchos</label>
                 <div class="col-md-10">
-                    <select class="form-control" name="CartuchosID" id="CartuchosID">
+                    <select class="form-control" name="CartuchoID" id="CartuchoID">
                         @foreach (var item in ViewBag.Cartuchos)
                         {
                             <option value="@item.ID">@item.NomeModelo</option>
@@ -87,7 +85,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">Impressoras</label>
                 <div class="col-md-10">
-                    <select class="form-control" name="ImpressorasID" id="ImpressorasID">
+                    <select class="form-control" name="ImpressoraID" id="ImpressoraID">
                         @foreach (var item in ViewBag.Impressoras)
                         {
                             <option value="@item.ID">@item.Modelo</option>
@@ -147,7 +145,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">Orçamento</label>
                 <div class="col-md-10">
-                    <input class="form-control" type="text" name="ValorTotalOrcamento" id="ValorTotalOrcamento" readonly />
+                    <input class="form-control" type="text" name="ValorTotalOrcamento" id="ValorTotalOrcamento" readonly/>
                     <span class="text-danger" id="erroValorTotalOrcamento" name="erroValorTotalOrcamento">
                         @{
                             erro = errors.FirstOrDefault(c => c.FieldName == "ValorTotalOrcamento");
@@ -175,8 +173,6 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-
-            debugger
 
             $("#BotaoEnviar").click(function (e) {
 
@@ -220,12 +216,64 @@
                     sucesso = false;
                 }
                 else {
-
+                    $("#erroValorTotalOrcamento").html("");
                 }
 
                 if (!sucesso) {
                     e.preventDefault();
                 }
+
+            });
+
+            $("#QuantidadeCartucho").change(function () {
+                debugger
+
+                $.ajax({
+                    url: "/Movimentacao/CalcularOrcamento?idCartucho=" + $("#CartuchoID").val() +
+                        "&idImpressora=" + $("#ImpressoraID").val() +
+                        "&qtdCartucho=" + $("#QuantidadeCartucho").val(),
+                    type: "get",
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("kkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+                    },
+                    success: function (data) {
+                        $("#ValorTotalOrcamento").val(data);
+                    }
+                });
+            });
+
+            $("#CartuchoID").change(function () {
+                debugger
+
+                $.ajax({
+                    url: "/Movimentacao/CalcularOrcamento?idCartucho=" + $("#CartuchoID").val() +
+                        "&idImpressora=" + $("#ImpressoraID").val() +
+                        "&qtdCartucho=" + $("#QuantidadeCartucho").val(),
+                    type: "get",
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("kkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+                    },
+                    success: function (data) {
+                        $("#ValorTotalOrcamento").val(data);
+                    }
+                });
+            });
+
+            $("#ImpressoraID").change(function () {
+                debugger
+
+                $.ajax({
+                    url: "/Movimentacao/CalcularOrcamento?idCartucho=" + $("#CartuchoID").val() +
+                        "&idImpressora=" + $("#ImpressoraID").val() +
+                        "&qtdCartucho=" + $("#QuantidadeCartucho").val(),
+                    type: "get",
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("kkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+                    },
+                    success: function (data) {
+                        $("#ValorTotalOrcamento").val(data);
+                    }
+                });
             });
         });
     </script>

@@ -1,17 +1,14 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Cadastrar";
 }
 
-
-
+<h1>Cadastrar Cartucho</h1>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8" />
     <title>Impressora Express</title>
     <link rel="Sidebar.css" href="css." />
-
 </head>
 <body>
     <div>
@@ -42,10 +39,9 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Cadastrar Cartucho</title>
+    <title>Cadastrar</title>
 </head>
 <body>
-
     <div>
         @{
             List<Common.Error> errors = new List<Common.Error>();
@@ -55,6 +51,7 @@
             }
         }
         <div>
+
             <form method="post">
                 <div class="form-group">
                     <label class="control-label col-md-2">Nome Modelo</label>

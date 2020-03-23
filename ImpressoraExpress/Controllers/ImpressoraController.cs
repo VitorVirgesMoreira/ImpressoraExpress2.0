@@ -14,11 +14,11 @@ namespace ImpressoraExpressMVC.Controllers
     public class ImpressoraController : BaseController
     {
         private readonly IImpressoraService service;
-
         public ImpressoraController(IImpressoraService service)
         {
             this.service = service;
         }
+
         [HttpGet]
         public async Task<IActionResult> Cadastrar()
         {
@@ -46,6 +46,7 @@ namespace ImpressoraExpressMVC.Controllers
             }
             return View();
         }
+
         public async Task<IActionResult> Index()
         {
             List<ImpressoraDTO> impressoras = await service.GetData();

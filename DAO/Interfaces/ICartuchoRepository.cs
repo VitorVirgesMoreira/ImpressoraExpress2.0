@@ -10,7 +10,5 @@ namespace DAO.Interfaces
     {
         Task Create(CartuchoDTO cartucho);
         Task<List<CartuchoDTO>> GetData();
-        Task<List<CartuchoDTO>> GetCartuchos();
-
     }
 }

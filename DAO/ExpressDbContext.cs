@@ -16,12 +16,13 @@ namespace DAO
         {
 
         }
-       
+
         public DbSet <ClienteDTO> Clientes { get; set; }
         public DbSet <CartuchoDTO> Cartuchos { get; set; }
         public DbSet <ImpressoraDTO> Impressoras { get; set; }
         public DbSet <MovimentacaoDTO> Movimentacoes{ get; set; }
         public DbSet <UsuarioDTO> Usuarios { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

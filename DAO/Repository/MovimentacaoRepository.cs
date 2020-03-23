@@ -16,14 +16,13 @@ namespace DAO.Repository
         {
             _context = context;
         }
+
         public async Task Create(MovimentacaoDTO movimentacao)
         {
             try
             {
-
                 _context.Movimentacoes.Add(movimentacao);
-                    await _context.SaveChangesAsync();
-                
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
