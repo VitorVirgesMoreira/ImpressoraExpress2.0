@@ -10,7 +10,6 @@ namespace BLL.Interfaces
     {
         Task Create(UsuarioDTO usuario);
         Task<List<UsuarioDTO>> GetData();
-
         Task<UsuarioDTO> Authenticate(string email, string password);
     }
 }

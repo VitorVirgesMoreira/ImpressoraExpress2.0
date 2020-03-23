@@ -16,6 +16,7 @@ namespace DAO.Repository
         {
             _context = context;
         }
+
         public async Task Create(ClienteDTO cliente)
         {
             try
@@ -33,14 +34,6 @@ namespace DAO.Repository
             }
         }
 
-        public async Task<List<ClienteDTO>> GetClientes()
-        {
-            using (_context)
-            {
-                return await _context.Clientes.ToListAsync();
-            }
-        }
-
         public async Task<List<ClienteDTO>> GetData()
         {
             try
@@ -52,9 +45,7 @@ namespace DAO.Repository
                 File.WriteAllText("log.txt", ex.Message + "-" + ex.StackTrace);
                 throw new Exception("Erro no Banco de dados, contate o administrador");
             }
-
         }
-
     }
 }
 

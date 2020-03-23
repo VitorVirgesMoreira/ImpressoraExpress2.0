@@ -11,21 +11,18 @@ namespace DAO.Repository
 {
     public class ImpressoraRepository : IImpressoraRepository
     {
-
         private ExpressDbContext _context;
         public ImpressoraRepository(ExpressDbContext context)
         {
             _context = context;
         }
+
         public async Task Create(ImpressoraDTO impressora)
         {
-
             try
             {
-
                 _context.Impressoras.Add(impressora);
                 await _context.SaveChangesAsync();
-                
             }
             catch (Exception ex)
             {
@@ -47,14 +44,6 @@ namespace DAO.Repository
             {
                 File.WriteAllText("log.txt", ex.Message + "-" + ex.StackTrace);
                 throw new Exception("Erro no Banco de dados, contate o administrador");
-            }
-        }
-
-        public async Task<List<ImpressoraDTO>> GetImpressoras()
-        {
-            using (_context)
-            {
-                return await _context.Impressoras.ToListAsync();
             }
         }
     }

@@ -18,6 +18,5 @@ namespace ImpressoraExpressMVC.Controllers
             }
             base.OnActionExecuting(context);    
         }
-
     }
 }

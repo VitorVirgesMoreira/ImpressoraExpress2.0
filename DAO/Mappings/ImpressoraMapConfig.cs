@@ -13,7 +13,6 @@ namespace DAO.Mappings
         {
             builder.ToTable("IMPRESSORA");
             builder.Property(c => c.Modelo).HasMaxLength(150).IsRequired().IsUnicode();
-
         }
     }
 }

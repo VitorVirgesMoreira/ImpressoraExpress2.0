@@ -15,7 +15,6 @@ namespace BLL.Impl
     public  class UsuarioService : BaseService, IUsuarioService
     {
         private readonly IUsuarioRepository repository;
-
         public UsuarioService(IUsuarioRepository repository)
         {
             this.repository = repository;
@@ -71,9 +70,7 @@ namespace BLL.Impl
             }
 
             base.CheckErrors();
-
             await repository.Create(usuario);
-
         }
 
         public async Task<List<UsuarioDTO>> GetData()

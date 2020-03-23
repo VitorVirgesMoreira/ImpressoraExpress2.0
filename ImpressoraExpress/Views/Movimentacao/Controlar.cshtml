@@ -1,12 +1,10 @@
 ﻿@model ImpressoraExpressMVC.Models.MovimentacaoViewModel
 
-
-
 @{
-    ViewData["Title"] = "Controlar";
+    ViewData["Title"] = "Movimentacao";
 }
 
-<h1>Controlar</h1>
+<h1>Locação de Impressora</h1>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -244,6 +242,39 @@
                 });
             });
 
+            $("#CartuchoID").change(function () {
+                debugger
+
+                $.ajax({
+                    url: "/Movimentacao/CalcularOrcamento?idCartucho=" + $("#CartuchoID").val() +
+                        "&idImpressora=" + $("#ImpressoraID").val() +
+                        "&qtdCartucho=" + $("#QuantidadeCartucho").val(),
+                    type: "get",
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("kkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+                    },
+                    success: function (data) {
+                        $("#ValorTotalOrcamento").val(data);
+                    }
+                });
+            });
+
+            $("#ImpressoraID").change(function () {
+                debugger
+
+                $.ajax({
+                    url: "/Movimentacao/CalcularOrcamento?idCartucho=" + $("#CartuchoID").val() +
+                        "&idImpressora=" + $("#ImpressoraID").val() +
+                        "&qtdCartucho=" + $("#QuantidadeCartucho").val(),
+                    type: "get",
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("kkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+                    },
+                    success: function (data) {
+                        $("#ValorTotalOrcamento").val(data);
+                    }
+                });
+            });
         });
     </script>
 

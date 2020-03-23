@@ -13,11 +13,11 @@ namespace BLL.Impl
     public class MovimentacaoService : BaseService, IMovimentacaoService
     {
         private readonly IMovimentacaoRespository respository;
-
         public MovimentacaoService(IMovimentacaoRespository respository)
         {
             this.respository = respository;
         }
+
         public async Task<List<MovimentacaoDTO>> GetData()
         {
             return await respository.GetData();
@@ -47,7 +47,6 @@ namespace BLL.Impl
             }
 
             base.CheckErrors();
-            
             await respository.Create(movimentacao);
         }
 
@@ -55,6 +54,5 @@ namespace BLL.Impl
         {
             throw new NotImplementedException();
         }
-
     }
 }

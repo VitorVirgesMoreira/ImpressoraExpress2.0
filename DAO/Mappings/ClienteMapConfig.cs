@@ -11,8 +11,6 @@ namespace DAO.Mappings
     {
         public void Configure(EntityTypeBuilder<ClienteDTO> builder)
         {
-
-            //FLUENT API
             builder.ToTable("CLIENTES");
 
            builder.Property(c => c.CPF)
@@ -34,10 +32,7 @@ namespace DAO.Mappings
 
             builder.Property(c => c.Nome)
                 .HasMaxLength(50);
-
-           
         }
     }
-
 }
 

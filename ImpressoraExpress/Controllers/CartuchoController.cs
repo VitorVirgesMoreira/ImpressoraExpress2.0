@@ -14,12 +14,11 @@ namespace ImpressoraExpressMVC.Controllers
     public class CartuchoController : BaseController
     {
         private readonly ICartuchoService service;
-
         public CartuchoController(ICartuchoService service)
         {
             this.service = service;
         }
-        //Controllers
+
         [HttpGet]
         public async Task<IActionResult> Cadastrar()
         {
@@ -29,7 +28,6 @@ namespace ImpressoraExpressMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Cadastrar(CartuchoViewModel viewModel)
         {
-
             var configuration = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<CartuchoViewModel, CartuchoDTO>();

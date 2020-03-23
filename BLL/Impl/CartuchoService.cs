@@ -14,8 +14,6 @@ namespace BLL.Impl
     public class CartuchoService : BaseService, ICartuchoService
     {
         private readonly ICartuchoRepository repository;
-
-        //Colocar Validações nesse service enos abaixos
         public CartuchoService(ICartuchoRepository repository)
         {
             this.repository = repository;
@@ -46,11 +44,6 @@ namespace BLL.Impl
         public Task Update(CartuchoDTO cartucho)
         {
             throw new NotImplementedException();
-        }
-
-        public async Task<List<CartuchoDTO>> GetCartuchos()
-        {
-            return await repository.GetCartuchos();
         }
 
         public async Task<List<CartuchoDTO>> GetData()

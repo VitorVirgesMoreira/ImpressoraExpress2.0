@@ -16,11 +16,11 @@ namespace ImpressoraExpressMVC.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioService service;
-
         public UsuarioController(IUsuarioService service)
         {
             this.service = service;
         }
+
         [HttpGet]
         public async Task<IActionResult> Cadastrar()
         {
@@ -75,7 +75,6 @@ namespace ImpressoraExpressMVC.Controllers
                 ViewBag.Erros = ex.Message;
             }
             return View();
-
         }
     }
 }

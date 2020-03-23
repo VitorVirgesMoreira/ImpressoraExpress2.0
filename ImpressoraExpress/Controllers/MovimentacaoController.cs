@@ -15,29 +15,28 @@ namespace ImpressoraExpressMVC.Controllers
 
     public class MovimentacaoController : BaseController
     {
-        private readonly ICartuchoService _carService;
-        private readonly IClienteService _cliService;
-        private readonly IImpressoraService _impService;
-        private readonly IMovimentacaoService _movService;
+        private readonly ICartuchoService _cartuchoService;
+        private readonly IClienteService _clienteService;
+        private readonly IImpressoraService _impressoraService;
+        private readonly IMovimentacaoService _movimentacaoService;
 
         public MovimentacaoController(IMovimentacaoService movService,
                                       ICartuchoService carService,
                                       IClienteService cliService,
                                       IImpressoraService impService)
         {
-            this._movService = movService;
-            this._carService = carService;
-            this._cliService = cliService;
-            this._impService = impService;
+            this._movimentacaoService = movService;
+            this._cartuchoService = carService;
+            this._clienteService = cliService;
+            this._impressoraService = impService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Controlar()
         {
-
-            List<CartuchoDTO> cartuchos = await _carService.GetCartuchos();
-            List<ClienteDTO> clientes = await _cliService.GetClientes();
-            List<ImpressoraDTO> impressoras = await _impService.GetImpressoras();
+            List<CartuchoDTO> cartuchos = await _cartuchoService.GetData();
+            List<ClienteDTO> clientes = await _clienteService.GetData();
+            List<ImpressoraDTO> impressoras = await _impressoraService.GetData();
 
             var configuration = new MapperConfiguration(cfg =>
             {
@@ -56,14 +55,12 @@ namespace ImpressoraExpressMVC.Controllers
             ViewBag.Clientes = dadosClientes;
             ViewBag.Impressoras = dadosImpressoras;
 
-
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Controlar(MovimentacaoViewModel viewModel)
         {
-            
             var configuration = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<MovimentacaoViewModel, MovimentacaoDTO>();
@@ -72,7 +69,7 @@ namespace ImpressoraExpressMVC.Controllers
             MovimentacaoDTO dto = mapper.Map<MovimentacaoDTO>(viewModel);
             try
             {
-                await _movService.Insert(dto);
+                await _movimentacaoService.Insert(dto);
                 return RedirectToAction("Index", "Movimentacao");
             }
             catch (Exception ex)
@@ -81,22 +78,22 @@ namespace ImpressoraExpressMVC.Controllers
             }
             return View();
         }
+
         public IActionResult Index()
         {
             return View();
         }
 
-
         [HttpGet]
         public string CalcularOrcamento(int idCartucho, int idImpressora, int qtdCartucho)
         {
             double precoCartucho =
-            _carService.GetData().Result.FirstOrDefault(c => c.ID == idCartucho).ValorUnitario;
+            _cartuchoService.GetData().Result.FirstOrDefault(c => c.ID == idCartucho).ValorUnitario;
 
             double valorTotalCartuchos = precoCartucho * qtdCartucho;
 
             double precoImpressora =
-                _impService.GetData().Result.FirstOrDefault(c => c.ID == idImpressora).Valor;
+                _impressoraService.GetData().Result.FirstOrDefault(c => c.ID == idImpressora).Valor;
 
             double valorOrcamento = valorTotalCartuchos + precoImpressora;
 
