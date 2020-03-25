@@ -1,16 +1,15 @@
 ﻿@model List<ImpressoraExpressMVC.Models.MovimentacaoViewModel>
 
 @{
-    ViewData["Title"] = "Controlar";
+    ViewData["Title"] = "Index";
 }
-
 
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Controlar</title>
+    <title>Index</title>
 </head>
 <body>
     <h2>Ultimas Vendas</h2>
@@ -24,20 +23,18 @@
                 <th>Quantidade de Cartucho</th>
                 <th>Data de Venda</th>
                 <th>Valor da Venda</th>
-
             </tr>
 
             @foreach (var item in Model)
             {
                 <tr>
                     <td>@item.ID</td>
-                    <td>@item.ClienteID</td>
-                    <td>@item.CartuchoID</td>
-                    <td>@item.ImpressoraID</td>
+                    <td>@item.Cliente.Nome.ToString()</td>
+                    <td>@item.Cartucho.NomeModelo.Substring(0, 20)</td>
+                    <td>@item.Impressora.Modelo.Substring(0, 20)</td>
                     <td>@item.QuantidadeCartucho</td>
-                    <td>@item.DataVenda.Date</td>
+                    <td>@item.DataVenda.Date.ToString("dd/MM/yyyy")</td>
                     <td>@item.ValorTotalOrcamento.ToString("C2")</td>
-
                 </tr>
             }
 

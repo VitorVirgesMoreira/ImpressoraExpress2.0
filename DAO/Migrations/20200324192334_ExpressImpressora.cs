@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAO.Migrations
 {
-    public partial class impressora : Migration
+    public partial class ExpressImpressora : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -78,9 +78,7 @@ namespace DAO.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ImpressoraID = table.Column<int>(nullable: false),
                     ClienteID = table.Column<int>(nullable: false),
-                    ClientesID = table.Column<int>(nullable: true),
                     CartuchoID = table.Column<int>(nullable: false),
-                    CartuchosID = table.Column<int>(nullable: true),
                     DataVenda = table.Column<DateTime>(nullable: false),
                     QuantidadeCartucho = table.Column<int>(nullable: false),
                     ValorTotalOrcamento = table.Column<double>(nullable: false)
@@ -89,17 +87,17 @@ namespace DAO.Migrations
                 {
                     table.PrimaryKey("PK_Movimentacoes", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Movimentacoes_Cartuchos_CartuchosID",
-                        column: x => x.CartuchosID,
+                        name: "FK_Movimentacoes_Cartuchos_CartuchoID",
+                        column: x => x.CartuchoID,
                         principalTable: "Cartuchos",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Movimentacoes_Clientes_ClientesID",
-                        column: x => x.ClientesID,
+                        name: "FK_Movimentacoes_Clientes_ClienteID",
+                        column: x => x.ClienteID,
                         principalTable: "Clientes",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Movimentacoes_Impressoras_ImpressoraID",
                         column: x => x.ImpressoraID,
@@ -109,14 +107,14 @@ namespace DAO.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movimentacoes_CartuchosID",
+                name: "IX_Movimentacoes_CartuchoID",
                 table: "Movimentacoes",
-                column: "CartuchosID");
+                column: "CartuchoID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movimentacoes_ClientesID",
+                name: "IX_Movimentacoes_ClienteID",
                 table: "Movimentacoes",
-                column: "ClientesID");
+                column: "ClienteID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Movimentacoes_ImpressoraID",

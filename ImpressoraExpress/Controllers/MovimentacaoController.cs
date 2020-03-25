@@ -82,12 +82,21 @@ namespace ImpressoraExpressMVC.Controllers
         public async Task<IActionResult> Index()
         {
             List<MovimentacaoDTO> movimentacoes = await _movimentacaoService.GetData();
+
+            foreach (var item in movimentacoes)
+            {
+                item.Cliente = _clienteService.GetData().Result.FirstOrDefault(c => c.ID == item.ClienteID);
+                item.Cartucho = _cartuchoService.GetData().Result.FirstOrDefault(c => c.ID == item.CartuchoID);
+                item.Impressora = _impressoraService.GetData().Result.FirstOrDefault(c => c.ID == item.ImpressoraID);
+            }
+
             var configuration = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<MovimentacaoDTO, MovimentacaoViewModel>();
             });
 
             IMapper mapper = configuration.CreateMapper();
+
             List<MovimentacaoViewModel> dados = mapper.Map<List<MovimentacaoViewModel>>(movimentacoes);
 
             return View(dados);

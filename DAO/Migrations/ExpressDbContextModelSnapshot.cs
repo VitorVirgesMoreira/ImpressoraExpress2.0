@@ -95,13 +95,7 @@ namespace DAO.Migrations
                     b.Property<int>("CartuchoID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CartuchosID")
-                        .HasColumnType("int");
-
                     b.Property<int>("ClienteID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ClientesID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataVenda")
@@ -118,9 +112,9 @@ namespace DAO.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CartuchosID");
+                    b.HasIndex("CartuchoID");
 
-                    b.HasIndex("ClientesID");
+                    b.HasIndex("ClienteID");
 
                     b.HasIndex("ImpressoraID");
 
@@ -156,13 +150,17 @@ namespace DAO.Migrations
 
             modelBuilder.Entity("DTO.MovimentacaoDTO", b =>
                 {
-                    b.HasOne("DTO.CartuchoDTO", "Cartuchos")
+                    b.HasOne("DTO.CartuchoDTO", "Cartucho")
                         .WithMany()
-                        .HasForeignKey("CartuchosID");
+                        .HasForeignKey("CartuchoID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("DTO.ClienteDTO", "Clientes")
+                    b.HasOne("DTO.ClienteDTO", "Cliente")
                         .WithMany()
-                        .HasForeignKey("ClientesID");
+                        .HasForeignKey("ClienteID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DTO.ImpressoraDTO", "Impressora")
                         .WithMany()
