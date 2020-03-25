@@ -28,6 +28,7 @@
             @foreach (var item in Model)
             {
                 <tr>
+                    <!--O IF nessa tela n vai, não faço ideia pq-->
                     <td>@item.ID</td>
                     <td>@item.Cliente.Nome.ToString()</td>
                     <td>@item.Cartucho.NomeModelo.Substring(0, 20)</td>
@@ -42,3 +43,6 @@
     </div>
 </body>
 </html>
+
+
+
